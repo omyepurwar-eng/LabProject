@@ -6,7 +6,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 
 
-const Header = () => {
+const Header = () => { 
   const location = useLocation();
   const adminUser = localStorage.getItem("adminUser");
   const studentUser = localStorage.getItem("studentUser");
