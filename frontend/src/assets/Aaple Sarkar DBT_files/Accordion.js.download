@@ -1,0 +1,10 @@
+﻿var acc = document.getElementsByClassName("accordion"); var i; for (i = 0; i < acc.length; i++) { acc[i].addEventListener("click", function () { this.classList.toggle("active"); var panel = this.nextElementSibling; if (panel.style.maxHeight) { panel.style.maxHeight = null; } else { panel.style.maxHeight = panel.scrollHeight + "px"; } }); }
+
+function alertBox(strtype, strtitle, strcontent) { Lobibox.alert(strtype, { size: 'normal', msg: strcontent }); }
+function ConfirmAlertBox(strtype, strtitle, strcontent) { Lobibox.confirm({ msg: strcontent }); }
+function alertBoxURL(strtype, strtitle, strcontent, strURL) { Lobibox.alert(strtype, { size: 'normal', msg: strcontent, buttons: { ok: { 'class': 'btn btn-info', closeOnClick: false } }, callback: function (lobibox, type) { var btnType; if (type === 'ok') { location.href = strURL; } } }); }
+
+var tgs = new Array('div', 'td', 'tr'); var szs = new Array('small', 'medium', 'large'); var startSz = 1; function ts(trgt, inc) {
+    if (!document.getElementById) return
+    var d = document, cEl = null, sz = startSz, i, j, cTags; sz += inc; if (sz < 0) sz = 0; if (sz > 1) sz = 1; startSz = sz; if (!(cEl = d.getElementById(trgt))) cEl = d.getElementsByTagName(trgt)[0]; cEl.style.fontSize = szs[sz]; for (i = 0; i < tgs.length; i++) { cTags = cEl.getElementsByTagName(tgs[i]); for (j = 0; j < cTags.length; j++) cTags[j].style.fontSize = szs[sz]; }
+}

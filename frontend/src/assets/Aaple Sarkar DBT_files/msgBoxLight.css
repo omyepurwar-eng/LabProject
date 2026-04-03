@@ -1,0 +1,152 @@
+﻿div.msgBox
+{
+    padding: 0px;
+    position: fixed;
+    z-index: 1000;
+    font-family:Verdana;
+    min-height:120px;
+    color: #000;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -moz-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    background-clip: padding-box;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    outline: 0 none;
+    margin: 0 auto;
+    width: 600px;
+    
+}
+div.msgBoxBackGround
+{
+    top:0;
+    left:0;
+    position:absolute;
+    padding:0;
+    margin:0;
+    width:100%;
+    height:100%;
+    background-color:#000000;
+    opacity:0.7 !important;
+    z-index:999;
+}
+div.msgBoxTitle
+{
+    -moz-border-top-left-radius: 6px;
+    -webkit-border-top-left-radius: 6px;
+    border-top-left-radius: 6px;
+    -moz-border-top-right-radius: 6px;
+    -webkit-border-top-right-radius: 6px;
+    border-top-right-radius: 6px;
+    font-size:1em;
+    border-bottom: 1px solid #ebccd1;
+    min-height: 16.43px;
+    padding: 8px 15px;
+    background-color: #f2dede;
+    color: #a94442;
+    font-weight:bold;
+}
+div.msgBoxImage
+{
+    margin:20px 5px 0 5px;
+    display:none;
+    float:left;
+    height:45px;
+    width:45px;
+}
+div.msgBoxImage img
+{
+    height:45px;
+    width:45px;
+}
+div.msgBoxContent
+{
+    font-size:10pt;
+    margin:8px 3px 6px 3px;
+    display:inline-block;
+    font-family:Arial @Arial Unicode MS Times New Roman Georgia;
+    float:right;
+    height:auto; min-height:70px;
+    width:100%;
+    height: auto;
+}
+
+div.msgBoxContent ul { margin:0px !important; width: auto !important; padding:0 15px;}
+div.msgBoxContent ul li {max-height: 250px; line-height: 24px; overflow:scroll; list-style:none;}
+div.msgBoxContent p
+{
+    padding:0;
+    margin:0;
+    display: table;
+    height: 100%;
+    width: 100%;
+
+}
+
+div.msgBoxContent span 
+{
+    display: table-cell;
+    vertical-align: middle;
+    color: #00335e;
+    text-align:left;
+}
+
+div.msgBoxButtons
+{
+    display:inline-block;
+    width:100%;
+    text-align:center;
+    border-top: 1px solid #e5e5e5;
+    padding: 0 15px;
+}
+div.msgBoxButtons input[type='button']
+{
+    cursor:pointer;
+    margin:10px;
+    padding:6px 15px;
+    font-size:12px;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    color: #fff;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    
+}
+
+#msgBox1420451147668Content > ul{ margin:0px; padding:0px; }
+div.msgBoxButtons input[type='button']:hover
+{
+    background-color: #c9302c;
+    border-color: #ac2925;
+    color: #fff;
+}
+div.msgBoxButtons input[type='button']:active
+{
+    background-color:#AAAAAA;
+    color:White;
+}
+
+div.msgBoxInputs
+{
+    margin:0 auto;
+    padding-top:2px;
+    padding-bottom:2px;
+    margin-top:5px;
+    width:195px;
+}
+div.msgInput input[type='text'],div.msgInput input[type='password']
+{
+    padding:4px;
+    border:1px solid #DFDFDF;
+    color:#2f2f2f;
+    width:180px;
+}
+div.msgInput text
+{
+    color:#2f2f2f;
+    font-size:10pt;
+}

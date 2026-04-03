@@ -1,0 +1,3 @@
+function alertBox(strtype,strtitle,strcontent){Lobibox.alert(strtype,{size:'normal',msg:strcontent});}
+function ConfirmAlertBox(strtype,strtitle,strcontent){Lobibox.confirm({msg:strcontent});}
+function alertBoxURL(strtype,strtitle,strcontent,strURL){Lobibox.alert(strtype,{size:'normal',msg:strcontent,buttons:{ok:{'class':'btn btn-info',closeOnClick:false}},callback:function(lobibox,type){var btnType;if(type==='ok'){location.href=strURL;}}});}

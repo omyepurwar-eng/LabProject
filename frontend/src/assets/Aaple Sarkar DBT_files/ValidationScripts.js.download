@@ -1,0 +1,395 @@
+function checkTime(controlVal, evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode; var txt = String.fromCharCode(charCode); if (controlVal.value != '') { var controlLen = controlVal.value.length; var curControlLen = controlLen + 1; var charAtPreviousPosition = controlVal.value.charAt(controlLen - 1); }
+    else if (controlVal.value == '') { var curControlLen = 1; }
+    if ((curControlLen == 1) && ((txt == 0) || (txt == 1) || (txt == 2))) { return true; }
+    else if (((curControlLen == 2) && (charAtPreviousPosition == 0)) && ((txt == 0) || (txt == 1) || (txt == 2) || (txt == 3) || (txt == 4) || (txt == 5) || (txt == 6) || (txt == 7) || (txt == 8) || (txt == 9))) { return true; }
+    else if (((curControlLen == 2) && (charAtPreviousPosition == 1)) && ((txt == 0) || (txt == 1) || (txt == 2) || (txt == 3) || (txt == 4) || (txt == 5) || (txt == 6) || (txt == 7) || (txt == 8) || (txt == 9))) { return true; }
+    else if (((curControlLen == 2) && (charAtPreviousPosition == 2)) && ((txt == 0) || (txt == 1) || (txt == 2) || (txt == 3))) { return true; }
+    else if (curControlLen == 3) { controlVal.value = controlVal.value + ':'; return false; }
+    else if ((curControlLen == 4) && ((txt == 0) || (txt == 1) || (txt == 2) || (txt == 3) || (txt == 4) || (txt == 5))) { return true; }
+    else if (((curControlLen == 5) && (charAtPreviousPosition == 0)) && ((txt == 0) || (txt == 1) || (txt == 2) || (txt == 3) || (txt == 4) || (txt == 5) || (txt == 6) || (txt == 7) || (txt == 8) || (txt == 9))) { return true; }
+    else if (((curControlLen == 5) && ((charAtPreviousPosition == 1) || (charAtPreviousPosition == 2) || (charAtPreviousPosition == 3) || (charAtPreviousPosition == 4) || (charAtPreviousPosition == 5))) && ((txt == 0) || (txt == 1) || (txt == 2) || (txt == 3) || (txt == 4) || (txt == 5) || (txt == 6) || (txt == 7) || (txt == 8) || (txt == 9))) { return true; }
+    else { return false; }
+}
+function checkfields(ctrl) {
+    var str = ctrl.value
+    var isnot = "!@#$%^&*+=|\~`?><':;{[}]_.,/()-"; var inval = 0; var x; for (var i = 0; i < str.length; i++) { for (x = 0; x < isnot.length; x++) { if (str.charAt(i) == (isnot.charAt(x))) { inval = 1; alert("only alphabets,numbers allowed"); ctrl.value = str.substring(0, str.indexOf(str.charAt(i))); ctrl.focus(); } } }
+    return (inval);
+}
+function isAlphaKey(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57) || charCode == 8)
+        return true; return false;
+}
+function passwordShouldNotContaintCharacter(ctrlPassword) {
+    var strPassword = ctrlPassword.val(); var isnot = "~<>?/,.`:;+"; var inval = 0; var x; for (var i = 0; i < strPassword.length; i++) { for (x = 0; x < isnot.length; x++) { if (strPassword.charAt(i) == (isnot.charAt(x))) { inval = 1; ctrlPassword.value = strPassword.substring(0, strPassword.indexOf(strPassword.charAt(i))); ctrlPassword.focus(); return inval; } } }
+    return (inval);
+}
+function passwordShouldContaintCharacter(ctrlPassword) {
+    var strPassword = ctrlPassword.val(); var isHave = "!@#$%^&*()-_{}[]\|'<>/"; var inval = 0; var x; for (var i = 0; i < strPassword.length; i++) { for (x = 0; x < isHave.length; x++) { if (strPassword.charAt(i) == (isHave.charAt(x))) { inval = 1; ctrlPassword.value = strPassword.substring(0, strPassword.indexOf(strPassword.charAt(i))); ctrlPassword.focus(); return inval; } } }
+    return (inval);
+}
+function checkTextFieldsaddress(ctrl) {
+    var str = ctrl.value
+    var isnot = "!@#$%^&*+=|\~`?><':;{[}]_)(,./"; var inval = 0; var x; for (var i = 0; i < str.length; i++) { for (x = 0; x < isnot.length; x++) { if (str.charAt(i) == (isnot.charAt(x))) { inval = 1; ctrl.value = str.substring(0, str.indexOf(str.charAt(i))); ctrl.focus(); return false; } } }
+    return (inval);
+}
+function checkfields_Utility(ctrl) {
+    var str = ctrl.value; var isnot = "!#$%^&|\~`?><:;{[}]/-"; var inval = 0; var x; for (var i = 0; i < str.length; i++) { for (x = 0; x < isnot.length; x++) { if (str.charAt(i) == (isnot.charAt(x))) { inval = 1; alert("only alphabets,numbers allowed"); ctrl.value = str.substring(0, str.indexOf(str.charAt(i))); ctrl.focus(); } } }
+    return (inval);
+}
+function checkTextFields(ctrl) {
+    var str = ctrl.value
+    var isnot = "!@#$%^&*+=|\~`?><':;{[}]_"; var inval = 0; var x; for (var i = 0; i < str.length; i++) { for (x = 0; x < isnot.length; x++) { if (str.charAt(i) == (isnot.charAt(x))) { inval = 1; alert("only alphabets,numbers  and {.,/()-} space allowed"); ctrl.value = str.substring(0, str.indexOf(str.charAt(i))); ctrl.value = ""; ctrl.focus(); } } }
+    return (inval);
+}
+function checkRefNo(ctrl) {
+    var str = ctrl.value
+    var isnot = "!@#$%^&*+=\~`?><':;{[}]_()-.,"; var inval = 0; var x; for (var i = 0; i < str.length; i++) { for (x = 0; x < isnot.length; x++) { if (str.charAt(i) == (isnot.charAt(x))) { inval = 1; alert("only alphabets,numbers and {|/} space allowed"); ctrl.value = str.substring(0, str.indexOf(str.charAt(i))); ctrl.focus(); } } }
+    return (inval);
+}
+function valAlphabetic(evt) {
+    var charCode; var e = evt; charCode = (e.which) ? e.which : event.keyCode; if (charCode >= 97 && charCode <= 122 || charCode >= 65 && charCode <= 90 || charCode == 8 || charCode == 32) { return true; }
+    else { return false; }
+}
+function onlyNumbers(evt) {
+    flag = false
+    var e = evt; var charCode = e.which || e.keyCode; if (charCode > 31 && (charCode < 48 || charCode > 57)) { return false; }
+    return true;
+}
+function checkDate(sender, args) { if (sender._selectedDate > new Date()) { alert("You cannot select a day greater than today!"); sender._selectedDate = new Date(); sender._textbox.set_Value(sender._selectedDate.format(sender._format)) } }
+function IsAlphabetNumeric(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    var txt = String.fromCharCode(charCode)
+    if (txt.match(/^[a-zA-Z0-9\_]+$/))
+        return true
+    return false
+}
+function IsAlphabetNumeric1(evt) {
+    var charCode = (evt.which) ? evt.which : evt.keyCode; if (charCode == 8) return true; var keynum; var keychar; var charcheck = /[a-zA-Z0-9]/; if (window.event)
+    { keynum = evt.keyCode; }
+    else {
+        if (evt.which)
+        { keynum = evt.which; }
+        else return true;
+    }
+    keychar = String.fromCharCode(keynum); return charcheck.test(keychar);
+}
+function IsAlphabetNumericSpace(evt) {
+    var charCode = (evt.which) ? evt.which : evt.keyCode; if (charCode == 8) return true; var keynum; var keychar; var charcheck = /[a-zA-Z0-9 ]/; if (window.event)
+    { keynum = evt.keyCode; }
+    else {
+        if (evt.which)
+        { keynum = evt.which; }
+        else return true;
+    }
+    keychar = String.fromCharCode(keynum); return charcheck.test(keychar);
+}
+function IsAlphabetNumericWithHypenAndSlash(evt) {
+    var result = false; var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode == 8) { result = true; }
+    else {
+        var txt = String.fromCharCode(charCode)
+        if (txt.match(/^[a-zA-Z0-9_ .,\/\-b]+$/)) { result = true }
+        else { result = false }
+    }
+    return result;
+}
+function onlyDecimal_2places(evt, ctrl) {
+    var e = evt || event; var code = e.which; if (code != 0 && code != 8) {
+        if ((code != 46 || $(ctrl).val().indexOf('.') != -1) && (code < 48 || code > 57)) { e.preventDefault(); }
+        if (ctrl.value.indexOf(".") > -1 && (ctrl.value.split('.')[1].length > 1)) { e.preventDefault(); }
+    }
+}
+function onlyDecimal_10num_2places(evt, ctrl) {
+    var e = evt || event; var code = e.which; if (ctrl.value.length <= 10) {
+        if (code != 0 && code != 8) {
+            if ((code != 46 || $(ctrl).val().indexOf('.') != -1) && (code < 48 || code > 57)) { e.preventDefault(); }
+            if (ctrl.value.indexOf(".") > -1 && (ctrl.value.split('.')[1].length > 1)) { e.preventDefault(); }
+        }
+    }
+    else { e.preventDefault(); }
+}
+function onlyDecimal_3places(evt, ctrl) {
+    var e = evt || event; var code = e.which; if (code != 0 && code != 8) {
+        if ((code != 46 || $(ctrl).val().indexOf('.') != -1) && (code < 48 || code > 57)) { e.preventDefault(); }
+        if (ctrl.value.indexOf(".") > -1 && (ctrl.value.split('.')[1].length > 2)) { e.preventDefault(); }
+    }
+}
+function onlyDecimal_6places(evt, ctrl) {
+    var e = evt || event; var code = e.which; if (code != 0 && code != 8) {
+        if ((code != 46 || $(ctrl).val().indexOf('.') != -1) && (code < 48 || code > 57)) { e.preventDefault(); }
+        if (ctrl.value.indexOf(".") > -1 && (ctrl.value.split('.')[1].length > 5)) { e.preventDefault(); }
+    }
+}
+function fnEnterOnlyTime(cntrol, evt) {
+    var result = false; var charCode = (evt.which) ? evt.which : event.keyCode; if (charCode == 8) { result = true; }
+    else {
+        var txt = String.fromCharCode(charCode)
+        var controlVal = cntrol.value; var controlLen = controlVal.length; var curControlLen = controlLen + 1; var index = controlVal.indexOf(':')
+        if ((charCode == 58) && (curControlLen != 3)) { return false; }
+        if (txt.match(/^([0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]$/)) { result = true }
+        else { result = false }
+    }
+    return result;
+}
+function IsAlphabetNumericUserName(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    var txt = String.fromCharCode(charCode)
+    if (txt.match(/^[a-zA-Z0-9_.@\b]+$/))
+        return true
+    return false
+}
+function isNumericKey(evt) {
+    flag = false
+    var e = evt; var charCode = e.which || e.keyCode; if (charCode > 31 && (charCode < 48 || charCode > 57)) { alert("Only numbers are allowed"); return false; }
+    return true;
+}
+function IsAlphabet(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    var txt = String.fromCharCode(charCode)
+    if (txt.match(/^[a-zA-Z\b. ]+$/)) { return true; }
+    return false;
+}
+function IsAlphaNumericOnly(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    var txt = String.fromCharCode(charCode)
+    if (txt.match(/^[a-zA-Z0-9\b\\]+$/)) { return true; }
+    return false;
+}
+function IsNumericDot(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    var txt = String.fromCharCode(charCode)
+    if (txt.match(/^[0-9.]+$/)) { return true; }
+    return false;
+}
+function IsNumericSpecialCharacter(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    var txt = String.fromCharCode(charCode)
+    if (txt.match(/^[0-9.-]+$/)) { return true; }
+    return false;
+}
+function checkValidDate(control) {
+    var txt = control.val(); var val = txt; var isvalidate = false; if (val.length == 10) {
+        var splits = val.split("/"); var dt = new Date(splits[1] + "/" + splits[0] + "/" + splits[2]); if (dt.getDate() == splits[0] && dt.getMonth() + 1 == splits[1] && dt.getFullYear() == splits[2]) { isvalidate = true; }
+        else { if (val != "__/__/____") { txt = ""; isvalidate = false; } }
+    }
+    else { if (val != "__/__/____") { isvalidate = false; } }
+    return isvalidate;
+}
+function checkDateLesserThanToday(control) {
+    var txt = control.val(); var arraydate = txt.split("/"); var txttoday = new Date(); var curr_date = txttoday.getDate(); var curr_month = txttoday.getMonth() + 1; var curr_year = txttoday.getFullYear(); var a = curr_date + "/" + curr_month + "/" + curr_year; var val = txt; var isvalidate = false; if (val.length == 10) {
+        var splits = val.split("/"); var dt = new Date(splits[1] + "/" + splits[0] + "/" + splits[2]); if (dt.getDate() == splits[0] && dt.getMonth() + 1 == splits[1] && dt.getFullYear() == splits[2]) { isvalidate = true; }
+        else { if (val != "__/__/____") { control.focus(); txt = ""; isvalidate = false; } }
+    }
+    else { if (val != "__/__/____") { control.focus(); isvalidate = false; return true; } }
+    if (isvalidate == true) {
+        if (arraydate[2] < curr_year) { control.focus(); control.val(''); return true; }
+        else if (arraydate[2] == curr_year) {
+            if (arraydate[1] < curr_month) { control.focus(); control.val(''); return true; }
+            else { if (txt < a) { control.focus(); control.val(''); return true; } }
+        }
+    }
+}
+function checkDateGreaterThanToday(control) {
+    var txt = control.val(); var arraydate = txt.split("/"); var txttoday = new Date(); var curr_date = txttoday.getDate(); var curr_month = txttoday.getMonth() + 1; var curr_year = txttoday.getFullYear(); var a = curr_date + "/" + curr_month + "/" + curr_year; var val = txt; var isvalidate = false; if (val.length == 10) {
+        var splits = val.split("/"); var dt = new Date(splits[1] + "/" + splits[0] + "/" + splits[2]); if (dt.getDate() == splits[0] && dt.getMonth() + 1 == splits[1] && dt.getFullYear() == splits[2]) { isvalidate = true; }
+        else { if (val != "__/__/____") { control.focus(); txt = ""; isvalidate = false; } }
+    }
+    else { if (val != "__/__/____") { control.focus(); isvalidate = false; return true; } }
+    if (isvalidate == true) {
+        if (arraydate[2] > curr_year) { control.focus(); control.val(''); return true; }
+        else if (arraydate[2] == curr_year) {
+            if (arraydate[1] > curr_month) { control.focus(); control.val(''); return true; }
+            else { if (txt > a) { control.focus(); control.val(''); return true; } }
+        }
+    }
+}
+function compareFromDateAndToDate(FrDt_control, ToDt_control) {
+    var txtFrDt = FrDt_control.val(); var arraydateFrDt = txtFrDt.split("/"); var valFrDt = txtFrDt; var isvalidate = false; if (valFrDt.length == 10) {
+        var splitsFrDt = valFrDt.split("/"); var dtFrDt = new Date(splitsFrDt[1] + "/" + splitsFrDt[0] + "/" + splitsFrDt[2]); if (dtFrDt.getDate() == splitsFrDt[0] && dtFrDt.getMonth() + 1 == splitsFrDt[1] && dtFrDt.getFullYear() == splitsFrDt[2]) { isvalidate = true; }
+        else { if (valFrDt != "__/__/____") { FrDt_control.focus(); txtFrDt = ""; isvalidate = false; return false; } }
+    }
+    else { if (valFrDt != "__/__/____") { FrDt_control.focus(); isvalidate = false; return false; } }
+    var txtToDt = ToDt_control.val(); var arraydateToDt = txtToDt.split("/"); var valToDt = txtToDt; var isvalidate = false; if (valToDt.length == 10) {
+        var splitsToDt = valToDt.split("/"); var dtToDt = new Date(splitsToDt[1] + "/" + splitsToDt[0] + "/" + splitsToDt[2]); if (dtToDt.getDate() == splitsToDt[0] && dtToDt.getMonth() + 1 == splitsToDt[1] && dtToDt.getFullYear() == splitsToDt[2]) { isvalidate = true; }
+        else { if (valToDt != "__/__/____") { ToDt_control.focus(); txtToDt = ""; isvalidate = false; return false; } }
+    }
+    else { if (valToDt != "__/__/____") { ToDt_control.focus(); isvalidate = false; return false; } }
+    if (isvalidate == true) {
+        if (dtToDt < dtFrDt) { return false; }
+        else { return true; }
+    }
+}
+$(document).ready(function () {
+    var AllTextbox = document.getElementsByTagName("input")
+    for (var i = 0; i < AllTextbox.length; i++) { if (AllTextbox[i].type == 'text') { $('#' + AllTextbox[i].id).bind("cut copy paste", function (e) { e.preventDefault(); }); $('#' + AllTextbox[i].id).attr('autocomplete', 'off'); } };
+}); function checkEmailIDSpace(control) {
+    var txtUsername = document.getElementById('<%=txtUsername.ClientID %>'); var RegularExpressionValidator1 = document.getElementById('<%=RegularExpressionValidator1.ClientID %>'); var str = txtUsername.value; var newstr = str.replace(/(^\s*)|(\s*$)/gi, '')
+    txtUsername.value = newstr;
+}
+function isValidKey(e) {
+    var charCode = e.keyCode || e.which; if (charCode == 8 || charCode == 46)
+        return true; return false;
+}
+function UIDLength(srcControl) {
+    var uid = srcControl.val(); if (uid.length < 12) { alert('Please enter valid Aadhaar Number !!'); return false; }
+    return true;
+}
+function validEmailID(controlVal) {
+    var txt = controlVal.val(); if (txt.match(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/)) {
+        if (checkEmailCharacter(txt) == true) { return true; }
+        else { return false; }
+    }
+    else { return false; }
+}
+function checkEmailCharacter(email) {
+    var str = email; var n = str.indexOf("@"); var charcheck = /[a-zA-Z]/; var count = 0; if (n > 1) {
+        for (var i = 0, len = n; i < n; i++) {
+            if (str[i].match(/[a-zA-Z]/)) {
+                count += 1
+                break;
+            }
+        }
+        if (count == 1) { return true; }
+        else { email.focus(); return false; }
+    }
+    else { email.focus(); return false; }
+}
+function validPassword(val) {
+    var txt = val; if (txt.match(/^^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=*]).*$/)) { return true; }
+    else { return false; }
+}
+function validUserNameFormat(val) {
+    var match = /^[a-zA-Z0-9]{5,15}$/; if (match.test(val.val())) { return true; }
+    return false;
+}
+
+function validPasswordFormat(val) {
+    debugger;
+    var match = /^[a-zA-Z0-9]$/;
+    if (match.test(val.val())) {
+        return true;
+    }
+    else {
+        return false;
+    }
+
+}
+
+function validPanCardNumber(obj) {
+    var txt = $(obj).val(); if (txt.match(/[A-Za-z]{5}\d{4}[A-Za-z]{1}/)) { obj.focus(); return true; }
+    else { $(obj).val(''); return false; }
+}
+function chkBlankField(controlVal) {
+    var str = controlVal.val(); var newstr = str.replace(/(^\s*)|(\s*$)/gi, '')
+    if (newstr == '') { controlVal.val(newstr); controlVal.focus(); return true; }
+    return false;
+}
+function checkSpace(ctrl) {
+    var str = ctrl.val(); var newstr = str.replace(/(^\s*)|(\s*$)/gi, '')
+    return ctrl.val(newstr);
+}
+function checkDropDownListSelected(controlVal) {
+    var resultBoolean = false; objVal = controlVal.val(); if ((objVal == '') || (objVal == -1)) { return false; }
+    return true;
+}
+function checkRadioButtonListSelected(controlVal) {
+    var result = false; if (controlVal == undefined) { result = false; }
+    else { result = true; }
+    return result;
+}
+function validateMobile(controlVal) {
+    var mobmatch = /^[6-9][0-9]{9}$/; var resultBoolean = false; if (mobmatch.test(controlVal.val())) { return true; }
+    return false;
+}
+function validateEmail(controlVal) {
+    var Emailmatch = /^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*@((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$/; var resultBoolean = false; if (Emailmatch.test(controlVal.val())) { return true; }
+    return false;
+}
+function validatePincode(controlVal) {
+    var mobmatch = /^[4]\d{5}$/; if (mobmatch.test(controlVal.val())) { return true; }
+    return false;
+}
+function validatePincode_OtherState(controlVal) {
+    var mobmatch = /^[0-9]{6}$/; if (mobmatch.test(controlVal.val())) { return true; }
+    return false;
+}
+
+
+
+
+function validateFloatKeyPress(el, evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+    var number = el.value.split('.');
+    if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+
+    if (number.length > 1 && charCode == 46) {
+        return false;
+    }
+
+    var caratPos = getSelectionStart(el);
+    var dotPos = el.value.indexOf(".");
+    if (caratPos > dotPos && dotPos > -1 && (number[1].length > 1)) {
+        return false;
+    }
+    return true;
+}
+function getSelectionStart(o) {
+    if (o.createTextRange) {
+        var r = document.selection.createRange().duplicate()
+        r.moveEnd('character', o.value.length)
+        if (r.text == '') return o.value.length
+        return o.value.lastIndexOf(r.text)
+    } else return o.selectionStart
+}
+
+function swalpopupurl(msg, link) {
+
+
+
+    swal({
+
+        title: msg,
+
+        //text: msg,
+
+        //type: "success",
+
+        showCancelButton: false,
+
+        confirmButtonColor: '#2B78C1',
+
+        closeOnConfirm: false,
+
+        closeOnCancel: true,
+
+        allowEscapeKey: false,
+
+        allowOutsideClick: false,
+
+    },
+
+function (isConfirm) {
+
+    if (isConfirm) {
+
+
+
+        window.location.href = link;
+
+
+
+    }
+
+
+
+});
+
+
+
+
+
+}
