@@ -94,206 +94,216 @@ useEffect(() => {
 
 
 
-  return (
-     <div
-  className="d-flex align-items-center"
-  style={{
-    minHeight: "100vh",
-    background: "linear-gradient(135deg, #dbeafe, #f8fafc)",
-    paddingTop: "90px",
-    paddingBottom: "90px"
-  }}
->
-  <div className="container">
+ return (
+  <div
+    className="d-flex align-items-center justify-content-center"
+    style={{
+      minHeight: "100vh",
+      background: "linear-gradient(135deg, #e0e7ff, #f8fafc)",
+      padding: "100px 20px",
+    }}
+  >
+    <div className="container">
 
-    {/* Header Section */}
-    <div
-      className="d-flex flex-wrap justify-content-between align-items-center mb-5"
-      style={{ marginBottom: "60px" }}
-    >
-      <div>
-        <h3
-          className="fw-bold d-flex align-items-center gap-3 mb-2"
-          style={{ fontSize: "26px", letterSpacing: "0.5px" }}
-        >
-          <span
-            className="d-inline-flex align-items-center justify-content-center rounded-4"
-            style={{
-              width: "60px",
-              height: "60px",
-              background: "linear-gradient(135deg, #0d6efd, #3b82f6)",
-              boxShadow: "0 10px 25px rgba(13,110,253,0.3)"
-            }}
-          >
-            <i className="fas fa-user-graduate text-white fs-4"></i>
-          </span>
-          Profile
-        </h3>
-
-        <p
-          className="fw-semibold mb-0"
+      {/* Header */}
+      <div className="text-center mb-5">
+        <h2
+          className="fw-bold"
           style={{
-            color: "#6c757d",
-            fontSize: "15px"
+            fontSize: "32px",
+            background: "linear-gradient(90deg,#0d6efd,#6610f2)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            letterSpacing: "1px",
           }}
         >
-          Manage and update your personal details easily.
+          Student Profile
+        </h2>
+        <p className="text-muted mt-2">
+          Manage your personal information smoothly
         </p>
       </div>
 
-      <p
-        className="mt-3 fw-semibold"
-        style={{
-          fontSize: "15px",
-          background: "#ffffff",
-          padding: "8px 16px",
-          borderRadius: "8px",
-          boxShadow: "0 4px 10px rgba(0,0,0,0.05)"
-        }}
-      >
-        Welcome {studentUser.full_name || "guest"}
-      </p>
-    </div>
+      <div className="row justify-content-center">
+        <div className="col-lg-5 col-md-7">
 
-    <div className="row justify-content-center">
-      <div className="col-lg-5 col-md-7 col-sm-12">
-
-        <div
-          className="card border-0 rounded-4"
-          style={{
-            boxShadow: "0 15px 40px rgba(0,0,0,0.12)",
-            borderRadius: "18px",
-            overflow: "hidden"
-          }}
-        >
+          {/* CARD */}
           <div
-            className="card-body"
+            className="card border-0"
             style={{
-              padding: "40px 35px"
+              borderRadius: "20px",
+              backdropFilter: "blur(18px)",
+              background: "rgba(255,255,255,0.7)",
+              boxShadow: "0 20px 50px rgba(0,0,0,0.12)",
+              overflow: "hidden",
             }}
           >
-            <form onSubmit={handleSubmit}>
+            <div className="card-body p-5">
 
-              <div className="mb-4">
-                <label className="form-label fw-semibold" style={{ fontSize: "14px" }}>
-                  Student Id
-                </label>
-                <input
-                  type="text"
-                  name="student_id"
-                  value={profile.student_id}
-                  readOnly
-                  className="form-control bg-light"
+              {/* Avatar */}
+              <div className="text-center mb-4">
+                <div
                   style={{
-                    height: "48px",
-                    borderRadius: "10px",
-                    border: "1px solid #e9ecef",
-                    fontSize: "14px"
+                    width: "80px",
+                    height: "80px",
+                    borderRadius: "50%",
+                    margin: "0 auto",
+                    background: "linear-gradient(135deg,#0d6efd,#6610f2)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    boxShadow: "0 10px 25px rgba(13,110,253,0.4)"
                   }}
-                />
+                >
+                  <i className="fas fa-user text-white fs-3"></i>
+                </div>
+                <h5 className="mt-3 fw-semibold">
+                  {studentUser.full_name || "Guest"}
+                </h5>
               </div>
 
-              <div className="mb-4">
-                <label className="form-label fw-semibold" style={{ fontSize: "14px" }}>
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  name="full_name"
-                  value={profile.full_name}
-                  onChange={handleChange}
-                  className="form-control"
+              <form onSubmit={handleSubmit}>
+
+                {/* Student ID */}
+                <div className="mb-4">
+                  <label className="form-label fw-semibold">Student ID</label>
+                  <div className="input-group">
+                    <span className="input-group-text bg-white">
+                      <i className="fas fa-id-card text-primary"></i>
+                    </span>
+                    <input
+                      type="text"
+                      name="student_id"
+                      value={profile.student_id}
+                      readOnly
+                      className="form-control bg-light"
+                      style={{ height: "50px", borderRadius: "10px" }}
+                    />
+                  </div>
+                </div>
+
+                {/* Name */}
+                <div className="mb-4">
+                  <label className="form-label fw-semibold">Full Name</label>
+                  <div className="input-group">
+                    <span className="input-group-text bg-white">
+                      <i className="fas fa-user text-primary"></i>
+                    </span>
+                    <input
+                      type="text"
+                      name="full_name"
+                      value={profile.full_name}
+                      onChange={handleChange}
+                      className="form-control"
+                      style={{
+                        height: "50px",
+                        borderRadius: "10px",
+                        boxShadow: "0 4px 10px rgba(0,0,0,0.05)"
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Email */}
+                <div className="mb-4">
+                  <label className="form-label fw-semibold">Email</label>
+                  <div className="input-group">
+                    <span className="input-group-text bg-white">
+                      <i className="fas fa-envelope text-primary"></i>
+                    </span>
+                    <input
+                      type="email"
+                      name="email"
+                      value={profile.email}
+                      readOnly
+                      className="form-control bg-light"
+                      style={{ height: "50px", borderRadius: "10px" }}
+                    />
+                  </div>
+                </div>
+
+                {/* Mobile */}
+                <div className="mb-4">
+                  <label className="form-label fw-semibold">Mobile</label>
+                  <div className="input-group">
+                    <span className="input-group-text bg-white">
+                      <i className="fas fa-phone text-primary"></i>
+                    </span>
+                    <input
+                      type="number"
+                      name="mobile"
+                      value={profile.mobile}
+                      onChange={handleChange}
+                      className="form-control"
+                      style={{
+                        height: "50px",
+                        borderRadius: "10px",
+                        boxShadow: "0 4px 10px rgba(0,0,0,0.05)"
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Button */}
+                <button
+                  type="submit"
+                  disabled={saving}
+                  className={`btn w-100 ${
+                    saving ? "btn-secondary" : "btn-primary"
+                  }`}
                   style={{
-                    height: "48px",
-                    borderRadius: "10px",
-                    border: "1px solid #dee2e6",
-                    fontSize: "14px",
-                    boxShadow: "0 2px 6px rgba(0,0,0,0.05)"
+                    height: "52px",
+                    borderRadius: "14px",
+                    fontWeight: "600",
+                    fontSize: "15px",
+                    boxShadow: "0 10px 25px rgba(13,110,253,0.4)",
+                    transition: "all 0.3s ease",
                   }}
-                />
-              </div>
+                >
+                  {saving ? (
+                    <>
+                      <span className="spinner-border spinner-border-sm me-2"></span>
+                      Saving...
+                    </>
+                  ) : (
+                    <>
+                      <i className="fas fa-save me-2"></i>
+                      Save Changes
+                    </>
+                  )}
+                </button>
 
-              <div className="mb-4">
-                <label className="form-label fw-semibold" style={{ fontSize: "14px" }}>
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={profile.email}
-                  readOnly
-                  className="form-control bg-light"
-                  style={{
-                    height: "48px",
-                    borderRadius: "10px",
-                    border: "1px solid #e9ecef",
-                    fontSize: "14px"
-                  }}
-                />
-              </div>
-
-              <div className="mb-5">
-                <label className="form-label fw-semibold" style={{ fontSize: "14px" }}>
-                  Mobile Number
-                </label>
-                <input
-                  type="number"
-                  name="mobile"
-                  value={profile.mobile}
-                  onChange={handleChange}
-                  className="form-control"
-                  maxLength={10}
-                  style={{
-                    height: "48px",
-                    borderRadius: "10px",
-                    border: "1px solid #dee2e6",
-                    fontSize: "14px",
-                    boxShadow: "0 2px 6px rgba(0,0,0,0.05)"
-                  }}
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={saving}
-                className={`btn ${saving ? 'btn-secondary' : 'btn-primary'} w-100 bg-primary text-white`}
-                style={{
-                  height: "50px",
-                  borderRadius: "12px",
-                  fontWeight: "600",
-                  fontSize: "15px",
-                  letterSpacing: "0.5px",
-                  boxShadow: "0 8px 20px rgba(13,110,253,0.35)",
-                  transition: "all 0.3s ease"
-                }}
-              >
-                {saving ? (
-                  <>
-                    <span
-                      className="spinner-border spinner-border-sm me-2"
-                      role="status"
-                      aria-hidden="true"
-                    ></span>
-                    Saving...
-                  </>
-                ) : (
-                  <>
-                    <i className="bi bi-save me-2"></i>
-                    Save Changes
-                  </>
-                )}
-              </button>
-
-            </form>
+              </form>
+            </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
 
+    {/* Extra UI polish */}
+    <style>
+      {`
+        .form-control:focus {
+          box-shadow: 0 0 0 0.15rem rgba(13,110,253,0.25);
+          border-color: #0d6efd;
+        }
+
+        .btn:hover {
+          transform: translateY(-2px) scale(1.02);
+        }
+
+        .card {
+          transition: all 0.3s ease;
+        }
+
+        .card:hover {
+          transform: translateY(-5px);
+        }
+      `}
+    </style>
   </div>
-</div>
-  )
+);
 }
 
 export default StudentProfile

@@ -63,204 +63,164 @@ useEffect(() => {
         }
 
     }
+
   return (
-     <div
-  className="d-flex align-items-center"
+<div
+  className="d-flex align-items-center justify-content-center"
   style={{
     minHeight: "100vh",
-    background: "linear-gradient(135deg, #dbeafe, #f8fafc)",
-    paddingTop: "90px",
-    paddingBottom: "90px"
+    background: "linear-gradient(135deg, #1e3a8a, #3b82f6, #93c5fd)",
+    padding: "40px"
   }}
 >
-  <div className="container">
 
-    {/* Header Section */}
+<div className="container">
+
+  {/* HEADER */}
+  <div className="text-center mb-5">
     <div
-      className="d-flex flex-wrap justify-content-between align-items-center mb-5"
-      style={{ marginBottom: "65px" }}
+      className="mx-auto mb-3 d-flex align-items-center justify-content-center"
+      style={{
+        width: "70px",
+        height: "70px",
+        borderRadius: "20px",
+        background: "rgba(255,255,255,0.15)",
+        backdropFilter: "blur(10px)",
+        boxShadow: "0 10px 30px rgba(0,0,0,0.2)"
+      }}
     >
-      <div>
-        <h3
-          className="fw-bold d-flex align-items-center gap-3 mb-2"
-          style={{ fontSize: "26px", letterSpacing: "0.6px" }}
-        >
-          <span
-            className="d-inline-flex align-items-center justify-content-center rounded-4"
-            style={{
-              width: "60px",
-              height: "60px",
-              background: "linear-gradient(135deg, #0d6efd, #2563eb)",
-              boxShadow: "0 12px 30px rgba(13,110,253,0.35)"
-            }}
-          >
-            <i className="fas fa-key text-white fs-4"></i>
-          </span>
-          Change Password
-        </h3>
+      <i className="fas fa-lock text-white fs-3"></i>
+    </div>
 
-        <p
-          className="fw-semibold mb-0"
-          style={{
-            color: "#6c757d",
-            fontSize: "15px"
-          }}
-        >
-          Secure your account by updating your password regularly.
-        </p>
-      </div>
+    <h2 className="fw-bold text-white">Change Password</h2>
+    <p className="text-light mb-2">Keep your account secure 🔐</p>
 
-      <p
-        className="mt-3 fw-semibold"
+    <span
+      style={{
+        background: "rgba(255,255,255,0.2)",
+        padding: "6px 16px",
+        borderRadius: "20px",
+        fontSize: "13px",
+        color: "#fff"
+      }}
+    >
+      Welcome {studentUser.full_name || "Guest"}
+    </span>
+  </div>
+
+  {/* CARD */}
+  <div className="row justify-content-center">
+    <div className="col-md-6 col-lg-5">
+
+      <div
+        className="card border-0"
         style={{
-          fontSize: "14px",
-          background: "#ffffff",
-          padding: "8px 18px",
-          borderRadius: "10px",
-          boxShadow: "0 4px 12px rgba(0,0,0,0.06)"
+          borderRadius: "20px",
+          background: "rgba(255,255,255,0.15)",
+          backdropFilter: "blur(20px)",
+          boxShadow: "0 20px 60px rgba(0,0,0,0.3)"
         }}
       >
-        Welcome {studentUser.full_name || "Guest"}
-      </p>
-    </div>
 
-    <div className="row justify-content-center">
-      <div className="col-lg-5 col-md-7 col-sm-12">
+        <div className="card-body p-5">
 
-        <div
-          className="card border-0"
-          style={{
-            borderRadius: "18px",
-            boxShadow: "0 20px 45px rgba(0,0,0,0.12)",
-            overflow: "hidden"
-          }}
-        >
-          <div
-            className="card-body"
-            style={{
-              padding: "45px 35px"
-            }}
-          >
-            <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
 
-              {/* Current Password */}
-              <div className="mb-4">
-                <label
-                  className="form-label fw-semibold"
-                  style={{ fontSize: "14px" }}
-                >
-                  Current Password
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="current_password"
-                  name="current_password"
-                  value={form.current_password}
-                  onChange={handleChange}
-                  required
-                  style={{
-                    height: "50px",
-                    borderRadius: "10px",
-                    border: "1px solid #dee2e6",
-                    padding: "0 14px",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.05)"
-                  }}
-                />
-              </div>
-
-              {/* New Password */}
-              <div className="mb-4">
-                <label
-                  className="form-label fw-semibold"
-                  style={{ fontSize: "14px" }}
-                >
-                  New Password
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="new_password"
-                  name="new_password"
-                  value={form.new_password}
-                  onChange={handleChange}
-                  required
-                  style={{
-                    height: "50px",
-                    borderRadius: "10px",
-                    border: "1px solid #dee2e6",
-                    padding: "0 14px",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.05)"
-                  }}
-                />
-              </div>
-
-              {/* Confirm Password */}
-              <div className="mb-5">
-                <label
-                  className="form-label fw-semibold"
-                  style={{ fontSize: "14px" }}
-                >
-                  Confirm Password
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="confirm_password"
-                  name="confirm_password"
-                  value={form.confirm_password}
-                  onChange={handleChange}
-                  required
-                  style={{
-                    height: "50px",
-                    borderRadius: "10px",
-                    border: "1px solid #dee2e6",
-                    padding: "0 14px",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.05)"
-                  }}
-                />
-              </div>
-
-              {/* Button */}
-              <button
-                type="submit"
-                disabled={saving}
-                className={`btn ${saving ? 'btn-secondary' : 'btn-primary'} w-100 bg-primary text-white`}
+            {/* CURRENT PASSWORD */}
+            <div className="mb-4 position-relative">
+              <i className="fas fa-key position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+              <input
+                type="password"
+                name="current_password"
+                value={form.current_password}
+                onChange={handleChange}
+                required
+                placeholder="Current Password"
+                className="form-control ps-5"
                 style={{
                   height: "52px",
-                  borderRadius: "14px",
-                  fontWeight: "600",
-                  fontSize: "15px",
-                  letterSpacing: "0.6px",
-                  boxShadow: "0 10px 25px rgba(13,110,253,0.4)",
-                  transition: "all 0.3s ease"
+                  borderRadius: "12px",
+                  border: "none",
+                  background: "rgba(255,255,255,0.8)"
                 }}
-              >
-                {saving ? (
-                  <>
-                    <span
-                      className="spinner-border spinner-border-sm me-2"
-                      role="status"
-                      aria-hidden="true"
-                    ></span>
-                    Updating...
-                  </>
-                ) : (
-                  <>
-                    <i className="bi bi-key me-2"></i>
-                    Update Password
-                  </>
-                )}
-              </button>
+              />
+            </div>
 
-            </form>
-          </div>
+            {/* NEW PASSWORD */}
+            <div className="mb-4 position-relative">
+              <i className="fas fa-lock position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+              <input
+                type="password"
+                name="new_password"
+                value={form.new_password}
+                onChange={handleChange}
+                required
+                placeholder="New Password"
+                className="form-control ps-5"
+                style={{
+                  height: "52px",
+                  borderRadius: "12px",
+                  border: "none",
+                  background: "rgba(255,255,255,0.8)"
+                }}
+              />
+            </div>
+
+            {/* CONFIRM PASSWORD */}
+            <div className="mb-5 position-relative">
+              <i className="fas fa-check-circle position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+              <input
+                type="password"
+                name="confirm_password"
+                value={form.confirm_password}
+                onChange={handleChange}
+                required
+                placeholder="Confirm Password"
+                className="form-control ps-5"
+                style={{
+                  height: "52px",
+                  borderRadius: "12px",
+                  border: "none",
+                  background: "rgba(255,255,255,0.8)"
+                }}
+              />
+            </div>
+
+            {/* BUTTON */}
+            <button
+              type="submit"
+              disabled={saving}
+              className="btn w-100 text-white fw-bold"
+              style={{
+                height: "55px",
+                borderRadius: "14px",
+                background: "linear-gradient(135deg, #2563eb, #1d4ed8)",
+                boxShadow: "0 10px 25px rgba(37,99,235,0.5)",
+                transition: "0.3s"
+              }}
+            >
+              {saving ? (
+                <>
+                  <span className="spinner-border spinner-border-sm me-2"></span>
+                  Updating...
+                </>
+              ) : (
+                <>
+                  <i className="fas fa-sync-alt me-2"></i>
+                  Update Password
+                </>
+              )}
+            </button>
+
+          </form>
+
         </div>
-
       </div>
-    </div>
 
+    </div>
   </div>
+
+</div>
 </div>
   )
 }

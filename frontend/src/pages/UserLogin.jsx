@@ -20,11 +20,8 @@ const UserLogin = () => {
         });
     }
    
-    
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-
 
         setLoading(true);
         
@@ -34,130 +31,168 @@ const UserLogin = () => {
                     login_id: formData.login_id,
                     password: formData.password,
                 }
-                );
-              
+            );
               
             if(response.data.success){
                 localStorage.setItem("studentUser", JSON.stringify(response.data));
-                    toast.success(`Login Successfull !`);
-                    navigate("/user/dashboard");
-                    setFormData({
-                        login_id: '',
-                        password: '',
-                    });
-                }
-                else{
-                    toast.error(response.data.message || 'Login failed. Please try again.');
-                }
+                toast.success(`Login Successfull !`);
+                navigate("/user/dashboard");
+                setFormData({
+                    login_id: '',
+                    password: '',
+                });
             }
+            else{
+                toast.error(response.data.message || 'Login failed. Please try again.');
+            }
+        }
         catch (err) {
             console.error(err);
             toast.error(err.response?.data?.message || 'Login failed. Please try again.');
-                    }
-    
+        }
         finally {
-                setLoading(false);
-                }
+            setLoading(false);
+        }
     }
+
 return (
-  <div
-    className="py-5 d-flex align-items-center"
-    style={{
-      minHeight: "100px",
-      background: "linear-gradient(135deg, #eef2f7, #f8f9fa)",
-    }}
-  >
-    <div className="container">
+<div
+  className="d-flex align-items-center justify-content-center"
+  style={{
+    minHeight: "100vh",
+    background: "linear-gradient(135deg, #1e3a8a, #3b82f6, #93c5fd)",
+    padding: "30px"
+  }}
+>
+  <div className="container">
 
-      {/* Header */}
-      <div className="row mb-4">
-        <div className="col-lg-6 col-md-2 mx-auto text-center">
-          <div className="bg-white shadow-sm rounded-4 p-4">
-            <h4 className="fw-bold mb-2 text-dark">
-              <i className="fa-solid fa-user-plus me-2 text-primary"></i>
-                Student Login
-            </h4>
-            <p className="text-muted small mb-0">
-              <i className="fa-solid fa-user me-1 text-success"></i>
-              Login to access the library resources and manage your account.
-            </p>
-          </div>
-        </div>
+    {/* HEADER */}
+    <div className="text-center mb-5">
+      <div
+        className="mx-auto mb-3 d-flex align-items-center justify-content-center"
+        style={{
+          width: "70px",
+          height: "70px",
+          borderRadius: "20px",
+          background: "rgba(255,255,255,0.15)",
+          backdropFilter: "blur(10px)",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.2)"
+        }}
+      >
+        <i className="fas fa-user text-white fs-3"></i>
       </div>
 
-      {/* Form */}
-      <div className="row justify-content-center">
-        <div className="col-lg-50 col-md-7 mx-auto">
-          <div className="card border-0 shadow rounded-4">
-            <div className="card-body p-9">
-
-              <form onSubmit={handleSubmit}>
-
-                <div className="mb-4">
-                  <label className="form-label fw-semibold text-secondary">
-                    <i className="fa-solid fa-user me-2 text-primary"></i>
-                    Email or Student ID
-                  </label>
-                
-                    <input
-                      type="text"
-                      name='login_id'
-                      className="form-control border-start-0"
-                      placeholder="Enter email or student ID"
-                      required
-                      value={formData.login_id}
-                      onChange={handleChange}
-                    /> 
-                </div>
-
-                <div className="mb-4">
-                  <label className="form-label fw-semibold text-secondary">
-                    <i className="fa-solid fa-key me-2 text-primary"></i>
-                    Password
-                  </label>
-                
-                    <input
-                      type="password"
-                      name='password'
-                      className="form-control border-start-0"
-                      placeholder="Enter password"
-                      required
-                      value={formData.password}
-                      onChange={handleChange}
-                    /> 
-                </div>
-
-                
-                <button
-                  type="submit"
-                  className="btn btn-primary w-100 fw-semibold rounded-3 shadow-sm"
-                  disabled={loading}
-                >
-                  {loading ? (
-                    <>
-                      <span className="spinner-border spinner-border-sm me-2"></span>
-                      Logging In...
-                    </>
-                  ) : (
-                    <>
-                      <i className="fa-solid fa-user me-2"></i>
-                      Login Now
-                    </>
-                  )}
-                </button>
-                <p className="text-center mt-3 text-muted">
-                  New User?<a href="/user/signup" className="text-decoration-none text-primary">Signup here</a>
-                </p>
-
-              </form>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <h2 className="fw-bold text-white">Student Login</h2>
+      <p className="text-light">Access your library dashboard</p>
     </div>
+
+    {/* CARD */}
+    <div className="row justify-content-center">
+      <div className="col-md-6 col-lg-5">
+
+        <div
+          className="card border-0"
+          style={{
+            borderRadius: "20px",
+            background: "rgba(255,255,255,0.15)",
+            backdropFilter: "blur(20px)",
+            boxShadow: "0 20px 60px rgba(0,0,0,0.3)"
+          }}
+        >
+          <div className="card-body p-5">
+
+            <form onSubmit={handleSubmit}>
+
+              {/* LOGIN ID */}
+              <div className="mb-4 position-relative">
+                <i className="fas fa-id-badge position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                <input
+                  type="text"
+                  name='login_id'
+                  placeholder="Email or Student ID"
+                  required
+                  value={formData.login_id}
+                  onChange={handleChange}
+                  className="form-control ps-5"
+                  style={{
+                    height: "52px",
+                    borderRadius: "12px",
+                    border: "none",
+                    background: "rgba(255,255,255,0.85)"
+                  }}
+                /> 
+              </div>
+
+              {/* PASSWORD */}
+              <div className="mb-4 position-relative">
+                <i className="fas fa-lock position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                <input
+                  type="password"
+                  name='password'
+                  placeholder="Password"
+                  required
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="form-control ps-5"
+                  style={{
+                    height: "52px",
+                    borderRadius: "12px",
+                    border: "none",
+                    background: "rgba(255,255,255,0.85)"
+                  }}
+                /> 
+              </div>
+
+              {/* BUTTON */}
+              <button
+                type="submit"
+                disabled={loading}
+                className="btn w-100 text-white fw-bold"
+                style={{
+                  height: "55px",
+                  borderRadius: "14px",
+                  background: "linear-gradient(135deg, #2563eb, #1d4ed8)",
+                  boxShadow: "0 10px 25px rgba(37,99,235,0.5)"
+                }}
+              >
+                {loading ? (
+                  <>
+                    <span className="spinner-border spinner-border-sm me-2"></span>
+                    Logging In...
+                  </>
+                ) : (
+                  <>
+                    <i className="fas fa-sign-in-alt me-2"></i>
+                    Login Now
+                  </>
+                )}
+              </button>
+
+              {/* FOOTER */}
+              <p className="text-center mt-4 text-light" style={{ fontSize: "14px" }}>
+                New User?{" "}
+                <a
+                  href="/user/signup"
+                  style={{
+                    color: "#fff",
+                    fontWeight: "600",
+                    textDecoration: "underline"
+                  }}
+                >
+                  Signup here
+                </a>
+              </p>
+
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
+</div>
 );
 }
 

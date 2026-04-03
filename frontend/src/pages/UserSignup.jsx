@@ -77,127 +77,121 @@ return (
   <div
     className="py-5 d-flex align-items-center"
     style={{
-      minHeight: "100px",
-      background: "linear-gradient(135deg, #eef2f7, #f8f9fa)",
+      minHeight: "100vh",
+      background: "linear-gradient(135deg, #eef2ff, #f8fafc)",
     }}
   >
     <div className="container">
 
-      {/* Header */}
+      {/* HEADER (same style as login/home) */}
       <div className="row mb-4">
-        <div className="col-lg-6 col-md-2 mx-auto text-center">
+        <div className="col-lg-6 mx-auto text-center">
           <div className="bg-white shadow-sm rounded-4 p-4">
             <h4 className="fw-bold mb-2 text-dark">
               <i className="fa-solid fa-user-plus me-2 text-primary"></i>
-                Student Registration
+              Student Registration
             </h4>
             <p className="text-muted small mb-0">
-              <i className="fa-solid fa-user-plus me-1 text-success"></i>
-              Register as a new student to access the library resources and manage your account.
+              Create your account to access library services
             </p>
           </div>
         </div>
       </div>
 
-      {/* Form */}
+      {/* FORM CARD */}
       <div className="row justify-content-center">
-        <div className="col-lg-50 col-md-7 mx-auto">
-          <div className="card border-0 shadow rounded-4">
-            <div className="card-body p-9">
+        <div className="col-lg-6 col-md-8">
+          <div className="card border-0 shadow-sm rounded-4">
+            <div className="card-body p-4">
 
               <form onSubmit={handleSubmit}>
 
-                <div className="mb-4">
+                {/* FULL NAME */}
+                <div className="mb-3">
                   <label className="form-label fw-semibold text-secondary">
                     <i className="fa-solid fa-user me-2 text-primary"></i>
                     Full Name
                   </label>
-                
-                    <input
-                      type="text"
-                      name='full_name'
-                      className="form-control border-start-0"
-                      placeholder="Enter full name"
-                      required
-                      value={formData.full_name}
-                      onChange={handleChange}
-                    /> 
+                  <input
+                    type="text"
+                    name="full_name"
+                    className="form-control"
+                    placeholder="Enter full name"
+                    value={formData.full_name}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
 
-                <div className="mb-4">
+                {/* MOBILE */}
+                <div className="mb-3">
                   <label className="form-label fw-semibold text-secondary">
                     <i className="fa-solid fa-mobile me-2 text-primary"></i>
                     Mobile Number
                   </label>
-                
-                    <input
-                      type="text"
-                      name='mobile'
-                      className="form-control border-start-0"
-                      placeholder="Enter mobile number"
-                      required
-                      value={formData.mobile}
-                      onChange={handleChange}
-                    /> 
+                  <input
+                    type="text"
+                    name="mobile"
+                    className="form-control"
+                    placeholder="Enter mobile number"
+                    value={formData.mobile}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
 
-                <div className="mb-4">
+                {/* EMAIL */}
+                <div className="mb-3">
                   <label className="form-label fw-semibold text-secondary">
                     <i className="fa-solid fa-envelope me-2 text-primary"></i>
                     Email Address
                   </label>
-                
-                    <input
-                      type="email"
-                      name='email'
-                      className="form-control border-start-0"
-                      placeholder="Enter valid email address"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                    /> 
+                  <input
+                    type="email"
+                    name="email"
+                    className="form-control"
+                    placeholder="Enter valid email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
 
-                <div className="mb-4">
+                {/* PASSWORD */}
+                <div className="mb-3">
                   <label className="form-label fw-semibold text-secondary">
                     <i className="fa-solid fa-key me-2 text-primary"></i>
                     Password
                   </label>
-                
-                    <input
-                      type="password"
-                      name = 'password'
-                      className="form-control border-start-0"
-                      placeholder="Enter password"
-                      required
-                      value={formData.password}
-                      onChange={handleChange}
-                    /> 
+                  <input
+                    type="password"
+                    name="password"
+                    className="form-control"
+                    placeholder="Enter password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
 
+                {/* CONFIRM PASSWORD */}
                 <div className="mb-4">
                   <label className="form-label fw-semibold text-secondary">
                     <i className="fa-solid fa-check-circle me-2 text-primary"></i>
                     Confirm Password
                   </label>
-                
-                    <input
-                      type="password"
-                      name='confirmPassword'
-                      className="form-control border-start-0"
-                      placeholder="Confirm password"
-                      required
-                      value={formData.confirmPassword}
-                      onChange={handleChange}
-                    /> 
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    className="form-control"
+                    placeholder="Confirm password"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
 
-
-
-
-
-                
-
+                {/* BUTTON */}
                 <button
                   type="submit"
                   className="btn btn-primary w-100 fw-semibold rounded-3 shadow-sm"
@@ -215,8 +209,16 @@ return (
                     </>
                   )}
                 </button>
+
+                {/* LOGIN LINK */}
                 <p className="text-center mt-3 text-muted">
-                  Already have an account? <a href="/user/login" className="text-decoration-none text-primary">Login here</a>
+                  Already have an account?{" "}
+                  <a
+                    href="/user/login"
+                    className="text-decoration-none text-primary fw-semibold"
+                  >
+                    Login here
+                  </a>
                 </p>
 
               </form>

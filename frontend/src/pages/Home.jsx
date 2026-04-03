@@ -5,67 +5,89 @@ const Home = () => {
   return (
     <div
       style={{
-        background: "linear-gradient(135deg, #eef2ff, #f8fafc)",
+        background: "linear-gradient(135deg, #1e3a8a, #3b82f6, #93c5fd)",
         minHeight: "100vh",
+        color: "#fff",
       }}
     >
 
-      {/* HERO SECTION */}
+      {/* HERO */}
       <div className="container py-5">
         <div className="row align-items-center">
 
           {/* LEFT */}
           <div className="col-md-6">
-            <h1 className="fw-bold mb-3" style={{ fontSize: "42px" }}>
+            <h1 className="fw-bold mb-3" style={{ fontSize: "46px" }}>
               📚 Smart Library <br />
-              <span className="text-primary">Management System</span>
+              <span style={{ color: "#e0e7ff" }}>
+                Management System
+              </span>
             </h1>
 
-            <p className="text-muted mb-4">
+            <p className="mb-4" style={{ opacity: 0.9 }}>
               Organize books, manage students, and track issuing seamlessly with a
               clean and powerful system built for efficiency.
             </p>
 
             <div className="d-flex gap-3 flex-wrap">
-              <Link to="/user/login" className="btn btn-primary px-4 py-2 shadow">
-                <i className="bi bi-person me-1"></i> Student Login
+              <Link
+                to="/user/login"
+                className="btn text-white fw-semibold"
+                style={{
+                  padding: "12px 26px",
+                  borderRadius: "12px",
+                  background: "linear-gradient(135deg, #2563eb, #1d4ed8)",
+                  boxShadow: "0 10px 25px rgba(37,99,235,0.5)"
+                }}
+              >
+                <i className="fas fa-user me-2"></i> Student Login
               </Link>
 
               <Link
                 to="/admin/login"
-                className="btn btn-outline-primary px-4 py-2"
+                className="btn fw-semibold"
+                style={{
+                  padding: "12px 26px",
+                  borderRadius: "12px",
+                  background: "rgba(255,255,255,0.15)",
+                  backdropFilter: "blur(10px)",
+                  color: "#fff",
+                  border: "1px solid rgba(255,255,255,0.3)"
+                }}
               >
-                <i className="bi bi-shield-lock me-1"></i> Admin Login
+                <i className="fas fa-user-shield me-2"></i> Admin Login
               </Link>
             </div>
           </div>
 
-          {/* RIGHT IMAGE */}
+          {/* RIGHT */}
           <div className="col-md-6 mt-4 mt-md-0">
             <div className="position-relative">
 
               <img
                 src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f"
                 alt="Library"
-                className="img-fluid rounded-4 shadow-lg"
+                className="img-fluid rounded-4"
                 style={{
-                  objectFit: "cover",
-                  height: "350px",
+                  height: "360px",
                   width: "100%",
+                  objectFit: "cover",
+                  boxShadow: "0 20px 60px rgba(0,0,0,0.4)"
                 }}
               />
 
-              {/* Floating Badge */}
               <div
-                className="position-absolute bg-white shadow rounded-3 px-3 py-2"
+                className="position-absolute px-3 py-2"
                 style={{
-                  bottom: "15px",
-                  left: "15px",
+                  bottom: "20px",
+                  left: "20px",
+                  background: "rgba(255,255,255,0.2)",
+                  borderRadius: "12px",
+                  backdropFilter: "blur(10px)",
+                  fontSize: "13px"
                 }}
               >
-                <small className="text-muted">
-                  📖 Efficient Book Management
-                </small>
+                📖 Efficient Book Management
               </div>
 
             </div>
@@ -84,29 +106,37 @@ const Home = () => {
 
           {[
             {
-              icon: "bi-book",
+              icon: "fa-book",
               title: "Manage Books",
               text: "Easily add, update and track all your books.",
-              color: "primary",
             },
             {
-              icon: "bi-arrow-left-right",
+              icon: "fa-exchange-alt",
               title: "Issue & Return",
               text: "Smooth issuing and returning with fine tracking.",
-              color: "success",
             },
             {
-              icon: "bi-people",
+              icon: "fa-users",
               title: "Students",
               text: "Manage all students and their records.",
-              color: "warning",
             },
           ].map((item, i) => (
             <div className="col-md-4" key={i}>
-              <div className="card border-0 shadow-lg rounded-4 h-100 text-center p-4 hover-card">
-                <i className={`bi ${item.icon} fs-1 text-${item.color} mb-3`}></i>
+              <div
+                className="p-4 text-center h-100"
+                style={{
+                  borderRadius: "18px",
+                  background: "rgba(255,255,255,0.15)",
+                  backdropFilter: "blur(15px)",
+                  boxShadow: "0 15px 40px rgba(0,0,0,0.3)",
+                  transition: "0.3s"
+                }}
+              >
+                <i className={`fas ${item.icon} fs-1 mb-3`}></i>
                 <h5 className="fw-semibold">{item.title}</h5>
-                <p className="text-muted small">{item.text}</p>
+                <p style={{ fontSize: "14px", opacity: 0.85 }}>
+                  {item.text}
+                </p>
               </div>
             </div>
           ))}
@@ -114,15 +144,18 @@ const Home = () => {
         </div>
       </div>
 
-      {/* VISUAL SECTION */}
+      {/* VISUAL */}
       <div className="container py-5">
         <div className="row align-items-center">
 
           <div className="col-md-6">
             <img
               src="https://images.unsplash.com/photo-1512820790803-83ca734da794"
-              className="img-fluid rounded-4 shadow"
+              className="img-fluid rounded-4"
               alt="Books"
+              style={{
+                boxShadow: "0 20px 50px rgba(0,0,0,0.4)"
+              }}
             />
           </div>
 
@@ -130,7 +163,7 @@ const Home = () => {
             <h4 className="fw-bold mb-3">
               📘 Simplify Your Library Workflow
             </h4>
-            <p className="text-muted">
+            <p style={{ opacity: 0.9 }}>
               From issuing books to tracking returns, everything is streamlined
               in one place with a clean and intuitive interface.
             </p>
@@ -139,47 +172,44 @@ const Home = () => {
         </div>
       </div>
 
-      {/* CTA SECTION */}
+      {/* CTA */}
       <div className="container py-5">
         <div
-          className="card border-0 shadow-lg rounded-4 text-center p-5"
+          className="text-center p-5"
           style={{
-            background: "linear-gradient(135deg, #0d6efd, #6610f2)",
-            color: "white",
+            borderRadius: "20px",
+            background: "rgba(255,255,255,0.2)",
+            backdropFilter: "blur(20px)",
+            boxShadow: "0 20px 60px rgba(0,0,0,0.4)"
           }}
         >
           <h3 className="fw-bold mb-3">
             Ready to Manage Your Library Smarter?
           </h3>
 
-          <p className="mb-4">
+          <p className="mb-4" style={{ opacity: 0.9 }}>
             Start using the system and simplify your workflow today.
           </p>
 
-          <Link to="/admin/login" className="btn btn-light px-4">
+          <Link
+            to="/admin/login"
+            className="btn fw-semibold"
+            style={{
+              padding: "12px 28px",
+              borderRadius: "12px",
+              background: "#fff",
+              color: "#1e3a8a"
+            }}
+          >
             Get Started
           </Link>
         </div>
       </div>
 
       {/* FOOTER */}
-      <div className="text-center py-4 small text-muted">
+      <div className="text-center py-4 small" style={{ opacity: 0.8 }}>
         © {new Date().getFullYear()} ReadHub • Designed by OmY.
       </div>
-
-      {/* HOVER EFFECT */}
-      <style>
-        {`
-          .hover-card {
-            transition: all 0.3s ease;
-          }
-
-          .hover-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-          }
-        `}
-      </style>
 
     </div>
   );
