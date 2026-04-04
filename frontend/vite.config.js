@@ -5,4 +5,15 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(),tailwindcss()],
+   server: {
+    proxy: {
+      // proxy all requests starting with /api to your backend
+      '/api': {
+        target: 'https://labproject-niut.onrender.com/', // backend URL
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ''), // optional
+      },
+    },
+  },
 })
