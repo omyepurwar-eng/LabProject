@@ -34,8 +34,8 @@ const AddBook = () => {
         setLoadingDropdown(true);
         try{
             const [authRes, catRes] = await Promise.all([
-                axios.get('http://127.0.0.1:8000/api/authors/'),
-                axios.get('http://127.0.0.1:8000/api/categories/')
+                axios.get(`${import.meta.env.VITE_API}/authors/`),
+                axios.get(`${import.meta.env.VITE_API}/categories/`)
             ]);
             const activeCats = (catRes.data).filter((c)=> c.is_active);
               setCategories(activeCats);
@@ -68,7 +68,7 @@ const AddBook = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/admin/books/add/', formData,{
+            const response = await axios.post(`${import.meta.env.VITE_API}/admin/books/add/`, formData,{
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

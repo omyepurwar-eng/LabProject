@@ -17,7 +17,7 @@ const AdminLogin = () => {
         
         try {
             const response = await axios.post(
-                'http://127.0.0.1:8000/api/admin/login/', 
+                `${import.meta.env.VITE_API}/admin/login/`, 
                 { username, password }
             );
 

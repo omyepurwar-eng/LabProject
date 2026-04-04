@@ -23,7 +23,7 @@ const AddAuthor = () => {
 
     const fetchAuthors = async () => {
         try{
-            const response = await axios.get('http://127.0.0.1:8000/api/authors/');
+            const response = await axios.get(`${import.meta.env.VITE_API}/authors/`);
             setAuthors(response.data);  
         }
         catch(err){
@@ -37,7 +37,7 @@ const AddAuthor = () => {
         setLoading(true);
         
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/admin/author/add/', { name });
+            const response = await axios.post(`${import.meta.env.VITE_API}/admin/author/add/`, { name });
             if(response.data.success){
                 toast.success(response.data.message || 'Author created successfully!');
                 setName('');

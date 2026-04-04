@@ -26,7 +26,7 @@ const ManageAuthors = () => {
     const fetchAuthors = async () => {
         setLoadingList(true);
         try{
-            const response = await axios.get('http://127.0.0.1:8000/api/authors/');
+            const response = await axios.get(`${import.meta.env.VITE_API}/authors/`);
             setAuthors(response.data);  
         }
         catch(err){
@@ -53,7 +53,7 @@ const ManageAuthors = () => {
         setSaving(true);
         
         try {
-            const response = await axios.put(`http://127.0.0.1:8000/api/update_author/${editId}/`, { name: editName });
+            const response = await axios.put(`${import.meta.env.VITE_API}/update_author/${editId}/`, { name: editName });
             if(response.data.success){
                 toast.success(response.data.message || 'Author Updated.');
                 cancelEdit();
@@ -77,7 +77,7 @@ const ManageAuthors = () => {
         if (!ok) return;
 
         try {
-            const response = await axios.delete(`http://127.0.0.1:8000/api/delete_author/${id}/`);
+            const response = await axios.delete(`${import.meta.env.VITE_API}/delete_author/${id}/`);
             if (response.data.success){
                 toast.success(response.data.message || "Author deleted successfully.");
                 setAuthors((prev)=> prev.filter((author) => author.id !== id));

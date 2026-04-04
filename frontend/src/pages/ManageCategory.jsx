@@ -80,7 +80,7 @@ const ManageCategory = () => {
         if (!ok) return;
 
         try {
-            const response = await axios.delete(`http://127.0.0.1:8000/api/delete_category/${id}/`);
+            const response = await axios.delete(`${import.meta.env.VITE_API}/delete_category/${id}/`);
             if (response.data.success){
                 toast.success(response.data.message || "Deleted.");
                 setCategories((prev)=> prev.filter((cat) => cat.id !== id));

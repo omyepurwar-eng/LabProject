@@ -26,7 +26,7 @@ const UserLogin = () => {
         setLoading(true);
         
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/user_login/',
+            const response = await axios.post(`${import.meta.env.VITE_API}/user_login/`,
                 {
                     login_id: formData.login_id,
                     password: formData.password,

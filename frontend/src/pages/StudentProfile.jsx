@@ -28,7 +28,7 @@ useEffect(() => {
     const fetchProfile = async () => {
         try {
             setLoading(true);
-            const response = await axios.get("http://127.0.0.1:8000/api/user/profile/",{
+            const response = await axios.get(`${import.meta.env.VITE_API}/user/profile/`,{
                 params :{ student_id: studentUser.student_id}
             });
             setProfile({
@@ -61,7 +61,7 @@ useEffect(() => {
         e.preventDefault();
         try{
             setSaving(true);
-            await axios.put("http://127.0.0.1:8000/api/user/profile/",{
+            await axios.put(`${import.meta.env.VITE_API}/user/profile/`,{
                 student_id:profile.student_id,
                 full_name:profile.full_name,
                 mobile:profile.mobile,

@@ -21,7 +21,7 @@ useEffect(() => {
     const fetchBooks = async () => {
         try {
             setLoading(true);
-            const response = await axios.get("http://127.0.0.1:8000/api/user/books/");
+            const response = await axios.get(`${import.meta.env.VITE_API}/user/books/`);
              
             setBooks(response.data)
             setFiltered(response.data)
@@ -58,7 +58,7 @@ useEffect(() => {
         if (book.cover_image.startsWith("http://")) {
             return book.cover_image;
         }
-        return `http://127.0.0.1:8000${book.cover_image}`;
+        return `${import.meta.env.VITE_API}${book.cover_image}`;
     };
 
   return (

@@ -26,7 +26,7 @@ const IssuedBookDetails =  () => {
     const fetchDetails = async () => {
         setLoading(true);
         try{
-            const response = await axios.get(`http://127.0.0.1:8000/api/admin/issued-books/${id}/`);
+            const response = await axios.get(`${import.meta.env.VITE_API}/admin/issued-books/${id}/`);
             setIssue(response.data);
             if (response.data.fine){
                 setFine(response.data.fine);
@@ -46,7 +46,7 @@ const IssuedBookDetails =  () => {
         }
         setReturning(true);
         try{
-            const response = await axios.post(`http://127.0.0.1:8000/api/admin/return_book/${id}/`,{fine: fine});
+            const response = await axios.post(`${import.meta.env.VITE_API}/admin/return_book/${id}/`,{fine: fine});
             toast.success("Book returned successfully.");
             // navigate("/admin/manage-issued-books");
             fetchDetails();

@@ -23,7 +23,7 @@ const ManageStudent = () => {
     const fetchStudents = async () => {
         setLoadingList(true);
         try{
-            const response = await axios.get('http://127.0.0.1:8000/api/admin/students/');
+            const response = await axios.get(`${import.meta.env.VITE_API}/admin/students/`);
             setStudents(response.data);  
         }
         catch(err){
@@ -38,8 +38,8 @@ const ManageStudent = () => {
     const handleToggleStatus = async (student) =>{
         const isCurrentlyActive = student.is_active;
         const url = isCurrentlyActive ? 
-            `http://127.0.0.1:8000/api/admin/block_student/${student.id}/`  : 
-            `http://127.0.0.1:8000/api/admin/activate_student/${student.id}/`;
+            `${import.meta.env.VITE_API}/admin/block_student/${student.id}/`  : 
+            `${import.meta.env.VITE_API}/admin/activate_student/${student.id}/`;
         const confirmMessage = isCurrentlyActive ?
             `Are you sure you want to block ${student.full_name}?` :
             `Are you sure you want to activate ${student.full_name}?`;

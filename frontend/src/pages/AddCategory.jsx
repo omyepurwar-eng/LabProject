@@ -24,7 +24,7 @@ const AddCategory = () => {
 
     const fetchCategories = async () => {
         try{
-            const response = await axios.get('http://127.0.0.1:8000/api/categories/');
+            const response = await axios.get(`${import.meta.env.VITE_API}/categories/`);
             setCategories(response.data);  
         }
         catch(err){
@@ -38,7 +38,7 @@ const AddCategory = () => {
         setLoading(true);
         
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/admin/category/add/', { name, status });
+            const response = await axios.post(`${import.meta.env.VITE_API}/admin/category/add/`, { name, status });
             if(response.data.success){
                 toast.success(response.data.message || 'Category created successfully!');
                 setName('');

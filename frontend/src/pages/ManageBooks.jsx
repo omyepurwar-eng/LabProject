@@ -439,9 +439,9 @@ const ManageBooks = () => {
         setLoadingList(true);
         try {
             const [booksResp, categoriesResp, authorsResp] = await Promise.all([
-                axios.get('http://127.0.0.1:8000/api/books/'),
-                axios.get('http://127.0.0.1:8000/api/categories/'),
-                axios.get('http://127.0.0.1:8000/api/authors/')
+                axios.get(`${import.meta.env.VITE_API}/books/`),
+                axios.get(`${import.meta.env.VITE_API}/categories/`),
+                axios.get(`${import.meta.env.VITE_API}/authors/`)
             ]);
             setBooks(booksResp.data);
             setCategories(categoriesResp.data);
@@ -461,7 +461,7 @@ const ManageBooks = () => {
         setEditAuthor(book.author);
         setEditPrice(book.price);
         setEditQuantity(book.quantity);
-        setEditImagePreview(`http://127.0.0.1:8000${book.cover_image}`);
+        setEditImagePreview(`${import.meta.env.VITE_API}${book.cover_image}`);
         setEditImageFile(null);
     };
 
@@ -498,7 +498,7 @@ const ManageBooks = () => {
             if (editImageFile) {
                 formData.append('cover_image', editImageFile);
             }
-            const response = await axios.put(`http://127.0.0.1:8000/api/update_book/${editId}/`,
+            const response = await axios.put(`${import.meta.env.VITE_API}/update_book/${editId}/`,
                 formData,
                 { headers: { 'Content-Type': 'multipart/form-data' } }
             );
@@ -521,7 +521,7 @@ const ManageBooks = () => {
         const ok = window.confirm("Are you sure you want to delete this book? This action cannot be undone.");
         if (!ok) return;
         try {
-            const response = await axios.delete(`http://127.0.0.1:8000/api/delete_book/${id}/`);
+            const response = await axios.delete(`${import.meta.env.VITE_API}/delete_book/${id}/`);
             if (response.data.success) {
                 toast.success(response.data.message || "Book deleted successfully.");
                 setBooks((prev) => prev.filter((book) => book.id !== id));
@@ -737,7 +737,7 @@ const ManageBooks = () => {
                                                         <td style={{ maxWidth: 220 }}>
                                                             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                                                                 <img
-                                                                    src={`http://127.0.0.1:8000${book.cover_image}`}
+                                                                    src={`${import.meta.env.VITE_API}${book.cover_image}`}
                                                                     alt={book.title}
                                                                     className="mb-book-img"
                                                                 />
