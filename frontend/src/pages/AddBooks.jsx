@@ -67,7 +67,6 @@ const AddBook = () => {
 
         setLoading(true);
 
-
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/admin/books/add/', formData,{
                 headers: {
@@ -90,160 +89,189 @@ const AddBook = () => {
                 }
             }
 
-                catch (err) {
-                    console.error(err);
-                toast.error("Something went wrong while adding the book.");
-                    }
+        catch (err) {
+            console.error(err);
+            toast.error("Something went wrong while adding the book.");
+        }
     
-                finally {
-                setLoading(false);
-                }
+        finally {
+            setLoading(false);
+        }
     }
-  return (
-    <div className='py-5' style={{background:"linear-gradient(135deg, #f8f9fa, #e9ecef)"}}>
-        <div className='container justify-flex-auto'>
-            <div className='row mb-4'>
-                <div className='col-md-9 mx-auto'>
-                    <div className='mb-4 text-center'>
-                        <h4 className='fw-semibold mb-auto'>
-                            <i className="bi bi-layer-group text-primary"></i>Add Book</h4>
-                            <p className='text-muted small'>Add new book, their categories. </p>
 
-                    </div>
+return (
+  <div
+    className="py-5"
+    style={{
+      minHeight: "100vh",
+      background: "linear-gradient(135deg, #1e3a8a, #3b82f6, #93c5fd)"
+    }}
+  >
+    <div className="container">
 
-                </div>
+      {/* Header */}
+      <div className="text-center mb-5 text-white">
+        <h2 className="fw-bold">
+          <i className="fa-solid fa-book-open me-2"></i> Add New Book
+        </h2>
+        <p className="opacity-75">Fill details to add a new book</p>
+      </div>
+
+      {/* Card */}
+      <div
+        className="card border-0 rounded-4 shadow-lg"
+        style={{
+          backdropFilter: "blur(15px)",
+          background: "rgba(255,255,255,0.12)",
+          border: "1px solid rgba(255,255,255,0.2)"
+        }}
+      >
+        <div className="card-body p-4">
+
+          {loadingDropdown ? (
+            <div className="text-center py-5">
+              <div className="spinner-border text-light"></div>
             </div>
+          ) : (
 
-                    <div className='row flex justify-content-between gap-3'>
-                        <div className='col-md-12'>
-                            <div className='card border-0 shadow-sm rounded-4'>
-                        <div className='card-body p-4'>
+            <form onSubmit={handleSubmit}>
+              <div className="row g-4">
 
-                            {loadingDropdown ? (
-                                <div className="d-flex justify-content-center my-5">
-                                    <span className="spinner-border text-primary"></span>
-                                </div>
-                            ) : (
-                        <form onSubmit={handleSubmit}>
-                            <div className='row g-3'>
-                                <div className='col-md-6'>
-                                <label className='form-label small fw-semibold'>Book Name</label> 
-                                    <input type="text" className="form-control" placeholder='e.g. The Great Gatsby, Harry Potter'
-                                    required
-                                    value={title}
-                                    onChange={(e)=> setTitle(e.target.value)}/>
-                                </div>
+                {/* Title */}
+                <div className="col-md-6">
+                  <label className="form-label text-white small">Book Name</label>
+                  <div className="input-group">
+                    <span className="input-group-text bg-transparent text-white border-light">
+                      <i className="fa-solid fa-book"></i>
+                    </span>
+                    <input
+                      className="form-control bg-transparent text-white border-light"
+                      value={title}
+                      onChange={(e)=>setTitle(e.target.value)}
+                      required
+                    />
+                  </div>
+                </div>
 
-                                <div className='col-md-6'>
-                                <label className='form-label small fw-semibold'>Category</label> 
-                                    <select className="form-select" 
-                                    required
-                                    value={category}
-                                    onChange={(e)=> setCategory(e.target.value)}>
-                                        <option value="">-- Select Category --</option>
-                                        {categories.map((cat)=> (
-                                            <option key={cat.id} value={cat.id}>{cat.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
+                {/* Category */}
+                <div className="col-md-6">
+                  <label className="form-label text-white small">Category</label>
+                  <select
+                    className="form-select border-light"
+                    style={{ backgroundColor: "rgba(255,255,255,0.1)", color: "white" }}
+                    value={category}
+                    onChange={(e)=>setCategory(e.target.value)}
+                    required
+                  >
+                    <option value="" style={{color:"black"}}>Select Category</option>
+                    {categories.map(c=>(
+                      <option key={c.id} value={c.id} style={{color:"black"}}>
+                        {c.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
-                                <div className='col-md-6'>
-                                <label className='form-label small fw-semibold'>Authors</label> 
-                                    <select className="form-select" 
-                                    required
-                                    value={author}
-                                    onChange={(e)=> setAuthor(e.target.value)}>
-                                        <option value="">Select Author</option>
-                                        {authors.map((auth)=> (
-                                            <option key={auth.id} value={auth.id}>{auth.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
+                {/* Author */}
+                <div className="col-md-6">
+                  <label className="form-label text-white small">Author</label>
+                  <select
+                    className="form-select border-light"
+                    style={{ backgroundColor: "rgba(255,255,255,0.1)", color: "white" }}
+                    value={author}
+                    onChange={(e)=>setAuthor(e.target.value)}
+                    required
+                  >
+                    <option value="" style={{color:"black"}}>Select Author</option>
+                    {authors.map(a=>(
+                      <option key={a.id} value={a.id} style={{color:"black"}}>
+                        {a.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
-                                <div className='col-md-6'>
-                                <label className='form-label small fw-semibold'>ISBN No.</label> 
-                                    <input type="text" className="form-control"
-                                     placeholder='unique isbn number'
-                                     required
-                                        value={isbn}
-                                        onChange={(e)=> setIsbn(e.target.value)}
-                                     />
-                                     <p className = "text-muted small mb-0">ISBN must be unique for each book.</p>
-                                </div>
+                {/* ISBN */}
+                <div className="col-md-6">
+                  <label className="form-label text-white small">ISBN</label>
+                  <input
+                    className="form-control bg-transparent text-white border-light"
+                    value={isbn}
+                    onChange={(e)=>setIsbn(e.target.value)}
+                    required
+                  />
+                </div>
 
-                                <div className='col-md-4'>
-                                <label className='form-label small fw-semibold'>Price</label> 
-                                    <input type="number" className="form-control"
-                                    min="0" step="0.01"
-                                     placeholder='e.g. 19.99'
-                                     required
-                                        value={price}
-                                        onChange={(e)=> setPrice(e.target.value)}
-                                     />
-                                     <p className = "text-muted small mb-0">Price must be a valid number.</p>
-                                </div>
+                {/* Price */}
+                <div className="col-md-4">
+                  <label className="form-label text-white small">Price</label>
+                  <input
+                    type="number"
+                    className="form-control bg-transparent text-white border-light"
+                    value={price}
+                    onChange={(e)=>setPrice(e.target.value)}
+                    required
+                  />
+                </div>
 
-                                <div className='col-md-4'>
-                                <label className='form-label small fw-semibold'>Quantity</label> 
-                                    <input type="number" className="form-control"
-                                    min="0" step="1"
-                                     placeholder='e.g. 1, 5, 10'
-                                     required
-                                        value={quantity}
-                                        onChange={(e)=> setQuantity(e.target.value)}
-                                     />
-                                     <p className = "text-muted small mb-0">Quantity must be a valid number.</p>
-                                </div>
+                {/* Quantity */}
+                <div className="col-md-4">
+                  <label className="form-label text-white small">Quantity</label>
+                  <input
+                    type="number"
+                    className="form-control bg-transparent text-white border-light"
+                    value={quantity}
+                    onChange={(e)=>setQuantity(e.target.value)}
+                    required
+                  />
+                </div>
 
-                                <div className='col-md-4'>
-                                <label className='form-label small fw-semibold'>Cover</label> 
-                                    <input type="file" className="form-control"
-                                    accept='image/*'
-                                        placeholder='Upload cover image (optional)'
-                                        onChange={(e)=> setCoverFile(e.target.files[0])}
-                                     />
-                                     <p className = "text-muted small mb-0">Cover must be a valid image file.</p>
-                                </div>
+                {/* File Upload */}
+                <div className="col-md-4">
+                  <label className="form-label text-white small">Cover Image</label>
+                  <input
+                    type="file"
+                    className="form-control border-light"
+                    style={{ backgroundColor: "rgba(255,255,255,0.1)", color: "white" }}
+                    onChange={(e)=>setCoverFile(e.target.files[0])}
+                  />
+                </div>
 
-                            </div>
-                            
-                            <div className='d-flex justify-content-end mt-4'>
+              </div>
 
-                                <button type='submit' className='btn btn-primary w-100 mt-3 fw-semibold' disabled={loading}>
-                                {loading ? (
-                                <>
-                                <span className="spinner-border spinner-border-sm me-2"></span>
-                                Submiting....
-                                </>
-                                ) : (
-                                
-                                <span>Submit</span>
-                                )}
-                            </button>
+              {/* Button */}
+              <button
+                className="btn w-100 mt-4 fw-semibold"
+                style={{
+                  background: "linear-gradient(135deg, #ffffff, #e0e7ff)",
+                  color: "#1e3a8a",
+                  borderRadius: "12px",
+                  transition: "0.3s"
+                }}
+                disabled={loading}
+              >
+                {loading ? (
+                  <>
+                    <span className="spinner-border spinner-border-sm me-2"></span>
+                    Adding...
+                  </>
+                ) : (
+                  <>
+                    <i className="fa-solid fa-plus me-2"></i>
+                    Add Book
+                  </>
+                )}
+              </button>
 
-                            </div>
-                           
-                        </form>
-                                )}
-                        </div>
+            </form>
 
-                        </div>
-
-                        </div>
-                       
-
-                    </div>
-                    
-
-                
-
-            
-
+          )}
         </div>
-        
-      
+      </div>
+
     </div>
-  )
+  </div>
+)
 }
 
-export default AddBook
+export default AddBook;

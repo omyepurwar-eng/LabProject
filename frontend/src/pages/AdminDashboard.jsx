@@ -1,6 +1,7 @@
 import React , {useState,useEffect} from 'react'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useNavigate } from 'react-router-dom';
 
 const AdminDashboard = () => {
@@ -32,236 +33,170 @@ const AdminDashboard = () => {
             setLoading(false);
         }
     }
-  
-    
-  return (
-    <div
-  className='py-5'
+
+return (
+<div
+  className="py-5"
   style={{
-    background: "linear-gradient(135deg, #eef2ff, #f8fafc)",
-    minHeight: "100vh"
+    minHeight: "100vh",
+    background: "linear-gradient(135deg, #1e3a8a, #3b82f6, #93c5fd)"
   }}
 >
-  <div className='container'>
+  <div className="container">
 
     {/* HEADER */}
-    <div className='row mb-5'>
-      <div className='col-md-8 mx-auto d-flex justify-content-between align-items-center flex-wrap gap-3'>
-
-        <div>
-          <h4 className='fw-bold d-flex align-items-center gap-2'>
-            <span
-              style={{
-                width: "45px",
-                height: "45px",
-                borderRadius: "12px",
-                background: "linear-gradient(135deg,#0d6efd,#4dabf7)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                boxShadow: "0 6px 18px rgba(13,110,253,0.3)"
-              }}
-            >
-              <i className="fa-solid fa-gauge-high text-white"></i>
-            </span>
-            Admin Dashboard
-          </h4>
-
-          <p className='text-muted small mb-0'>
-           Quick overview of the library stats and insights.
-          </p>
-        </div>
-
-        <div className='badge bg-primary-subtle bg-opacity-10 text-primary rounded-pill py-2 px-3'>
-          Admin panel
-        </div>
-
+    <div className="text-center mb-5">
+      <div
+        className="mx-auto mb-3 d-flex align-items-center justify-content-center"
+        style={{
+          width: "70px",
+          height: "70px",
+          borderRadius: "20px",
+          background: "rgba(255,255,255,0.15)",
+          backdropFilter: "blur(10px)",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.2)"
+        }}
+      >
+        <i className="fas fa-gauge-high text-white fs-3"></i>
       </div>
+
+      <h2 className="fw-bold text-white">Admin Dashboard</h2>
+      <p className="text-light">Overview of your library system</p>
     </div>
+
+    {/* LOADING */}
     {loading && (
-      <div className='text-center py-5'>
-        <div className='spinner-border text-primary'></div>
+      <div className="text-center py-5">
+        <div className="spinner-border text-light"></div>
       </div>
     )}
 
+    {/* STATS */}
     {!loading && stats && (
       <>
-      <div className='row g-3 mb-4'>
-        <div className='col-md-4'>
-          <div className='card rounded-4 shadow-sm border-0'>
-            <div className='card-body d-flex'>
-              <div className='me-3 d-flex align-items-center justify-content-center'>
-                <span className = "rounded-circle d-inline-flex align-items-center justify-content-center"
-                style={{
-                  width : "50px",
-                  height : "50px",
-                  backgroundColor : "#eef2ff",
-                  color : "#4dabf7",
-                  boxShadow : "0 4px 12px rgba(77,171,247,0.3)"
+        <div className="row g-4 mb-4">
 
-                }}>
-                  <i className="fa-solid fa-user-graduate text-primary"></i>
-                </span>
-              </div>
-              <div >
-                <p className='text-muted mb-1 text-uppercase small'>
-                  Total Students
-                </p>
-                <h3 className='fw-semibold mb-1'>
-                  {stats.total_students}
-                </h3>
-                <p className='text-muted mb-0 small'>
-                  Active : <span className='fw-semibold text-success'>{stats.active_students}</span>
-                   | Blocked : <span className='fw-semibold text-subtle'>{stats.blocked_students}</span>
-                </p>
-
+          {/* STUDENTS */}
+          <div className="col-md-4">
+            <div style={cardStyle}>
+              <div className="d-flex">
+                <div style={iconBox}>
+                  <i className="fas fa-user-graduate text-white"></i>
+                </div>
+                <div>
+                  <p className="text-light small mb-1">Total Students</p>
+                  <h3 className="text-white">{stats.total_students}</h3>
+                  <p className="text-light small mb-0">
+                    Active: <span className="text-success fw-bold">{stats.active_students}</span> | 
+                    Blocked: <span className="text-warning fw-bold">{stats.blocked_students}</span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className='col-md-4'>
-          <div className='card rounded-4 shadow-sm border-0'>
-            <div className='card-body d-flex'>
-              <div className='me-3 d-flex align-items-center justify-content-center'>
-                <span className = "rounded-circle d-inline-flex align-items-center justify-content-center"
-                style={{
-                  width : "50px",
-                  height : "50px",
-                  backgroundColor : "#eef2ff",
-                  color : "#4dabf7",
-                  boxShadow : "0 4px 12px rgba(77,171,247,0.3)"
-
-                }}>
-                  <i className="fa-solid fa-book-open text-primary"></i>
-                </span>
-              </div>
-              <div >
-                <p className='text-muted mb-1 text-uppercase small'>
-                  Total Books
-                </p>
-                <h3 className='fw-semibold mb-1'>
-                  {stats.total_books}
-                </h3>
-                <p className='text-muted mb-0 small'>
-                  Available : <span className='fw-semibold text-success'>{stats.available_books}</span>
-                   | Out Of stock : <span className='fw-semibold text-subtle'>{stats.out_of_stock_books}</span>
-                </p>
-
+          {/* BOOKS */}
+          <div className="col-md-4">
+            <div style={cardStyle}>
+              <div className="d-flex">
+                <div style={iconBox}>
+                  <i className="fas fa-book text-white"></i>
+                </div>
+                <div>
+                  <p className="text-light small mb-1">Total Books</p>
+                  <h3 className="text-white">{stats.total_books}</h3>
+                  <p className="text-light small mb-0">
+                    Available: <span className="text-success fw-bold">{stats.available_books}</span> | 
+                    Out: <span className="text-warning fw-bold">{stats.out_of_stock_books}</span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className='col-md-4'>
-          <div className='card rounded-4 shadow-sm border-0'>
-            <div className='card-body d-flex'>
-              <div className='me-3 d-flex align-items-center justify-content-center'>
-                <span className = "rounded-circle d-inline-flex align-items-center justify-content-center"
-                style={{
-                  width : "50px",
-                  height : "50px",
-                  backgroundColor : "#eef2ff",
-                  color : "#4dabf7",
-                  boxShadow : "0 4px 12px rgba(77,171,247,0.3)"
-
-                }}>
-                  <i className="fa-solid fa-arrow-right-arrow-left text-primary"></i>
-                </span>
-              </div>
-              <div >
-                <p className='text-muted mb-1 text-uppercase small'>
-                  Issued records
-                </p>
-                <h3 className='fw-semibold mb-1'>
-                  {stats.total_issued}
-                </h3>
-                <p className='text-muted mb-0 small'>
-                  Currently issued : <span className='fw-semibold text-success'>{stats.currently_issued}</span>
-                   | Returned : <span className='fw-semibold text-subtle'>{stats.returned_counts}</span>
-                </p>
-
+          {/* ISSUED */}
+          <div className="col-md-4">
+            <div style={cardStyle}>
+              <div className="d-flex">
+                <div style={iconBox}>
+                  <i className="fas fa-exchange-alt text-white"></i>
+                </div>
+                <div>
+                  <p className="text-light small mb-1">Issued Records</p>
+                  <h3 className="text-white">{stats.total_issued}</h3>
+                  <p className="text-light small mb-0">
+                    Current: <span className="text-success fw-bold">{stats.currently_issued}</span> | 
+                    Returned: <span className="text-warning fw-bold">{stats.returned_counts}</span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
+
         </div>
 
+        <div className="row g-4">
 
-      </div>
-
-      <div className='row g-3'>
-
-        <div className='col-md-6'>
-          <div className='card rounded-4 shadow-sm border-0'>
-            <div className='card-body d-flex'>
-              <div className='me-3 d-flex align-items-center justify-content-center'>
-                <span className = "rounded-circle d-inline-flex align-items-center justify-content-center"
-                style={{
-                  width : "50px",
-                  height : "50px",
-                  backgroundColor : "#eef2ff",
-                  color : "#4dabf7",
-                  boxShadow : "0 4px 12px rgba(77,171,247,0.3)"
-
-                }}>
-                  <i className="fa-solid fa-layer-group text-primary"></i>
-                </span>
-              </div>
-              <div >
-                <p className='text-muted mb-1 text-uppercase small'>
-                  Categories
-                </p>
-                <h3 className='fw-semibold mb-1'>
-                  {stats.total_categories}
-                </h3>
-                <p className='text-muted mb-0 small'>
-                  Different categories of books available in the library.
-                </p>
-
+          {/* CATEGORIES */}
+          <div className="col-md-6">
+            <div style={cardStyle}>
+              <div className="d-flex">
+                <div style={iconBox}>
+                  <i className="fas fa-layer-group text-white"></i>
+                </div>
+                <div>
+                  <p className="text-light small mb-1">Categories</p>
+                  <h3 className="text-white">{stats.total_categories}</h3>
+                  <p className="text-light small">Book categories available</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className='col-md-6'>
-          <div className='card rounded-4 shadow-sm border-0'>
-            <div className='card-body d-flex'>
-              <div className='me-3 d-flex align-items-center justify-content-center'>
-                <span className = "rounded-circle d-inline-flex align-items-center justify-content-center"
-                style={{
-                  width : "50px",
-                  height : "50px",
-                  backgroundColor : "#eef2ff",
-                  color : "#4dabf7",
-                  boxShadow : "0 4px 12px rgba(77,171,247,0.3)"
-
-                }}>
-                  <i className="fa-solid fa-user text-primary"></i>
-                </span>
-              </div>
-              <div >
-                <p className='text-muted mb-1 text-uppercase small'>
-                  Authors
-                </p>
-                <h3 className='fw-semibold mb-1'>
-                  {stats.total_authors}
-                </h3>
-                <p className='text-muted mb-0 small'>
-                  Authors contributing to the library.
-                </p>
-
+          {/* AUTHORS */}
+          <div className="col-md-6">
+            <div style={cardStyle}>
+              <div className="d-flex">
+                <div style={iconBox}>
+                  <i className="fas fa-user-pen text-white"></i>
+                </div>
+                <div>
+                  <p className="text-light small mb-1">Authors</p>
+                  <h3 className="text-white">{stats.total_authors}</h3>
+                  <p className="text-light small">Contributing authors</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-      </div>
+        </div>
       </>
     )}
 
   </div>
 </div>
-  )
+);
 }
 
-export default AdminDashboard
+// 🔥 Glass Card Style
+const cardStyle = {
+  borderRadius: "20px",
+  padding: "20px",
+  background: "rgba(255,255,255,0.15)",
+  backdropFilter: "blur(20px)",
+  boxShadow: "0 20px 60px rgba(0,0,0,0.3)"
+};
+
+// 🔥 Icon Box
+const iconBox = {
+  width: "55px",
+  height: "55px",
+  borderRadius: "15px",
+  background: "rgba(255,255,255,0.2)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  marginRight: "15px"
+};
+
+export default AdminDashboard;

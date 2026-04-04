@@ -1,4 +1,4 @@
-import React , {useState,useEffect, use} from 'react'
+import React , {useState} from 'react'
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -20,14 +20,12 @@ const UserSignup = () => {
             [e.target.name]: e.target.value 
         });
     }
-   
-    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (formData.password !== formData.confirmPassword) {
-            toast.error("New password and confirm password do not match.");
+            toast.error("Passwords do not match.");
             return;
         }
 
@@ -47,190 +45,212 @@ const UserSignup = () => {
                     password: formData.password,
                     confirm_password: formData.confirmPassword
                 }
-                );
-              
+            );
               
             if(response.data.success){
-                    toast.success(`Registration Successfull ! Your STUDENT ID is ${response.data.student_id}`);
-                    setFormData({
-                        full_name: '',
-                        mobile: '',
-                        email: '',
-                        password: '',
-                        confirmPassword: ''
-                    });
-                }
-                else{
-                    toast.error(response.data.message || 'Registration failed. Please try again.');
-                }
+                toast.success(`Registration Successful! ID: ${response.data.student_id}`);
+                setFormData({
+                    full_name: '',
+                    mobile: '',
+                    email: '',
+                    password: '',
+                    confirmPassword: ''
+                });
             }
+            else{
+                toast.error(response.data.message || 'Registration failed.');
+            }
+        }
         catch (err) {
-            console.error(err);
-            toast.error(err.response?.data?.message || 'Registration failed. Please try again.');
-                    }
-    
+            toast.error(err.response?.data?.message || 'Registration failed.');
+        }
         finally {
-                setLoading(false);
-                }
+            setLoading(false);
+        }
     }
+
 return (
-  <div
-    className="py-5 d-flex align-items-center"
-    style={{
-      minHeight: "100vh",
-      background: "linear-gradient(135deg, #eef2ff, #f8fafc)",
-    }}
-  >
-    <div className="container">
+<div
+  className="d-flex align-items-center justify-content-center"
+  style={{
+    minHeight: "100vh",
+    background: "linear-gradient(135deg, #1e3a8a, #3b82f6, #93c5fd)",
+    padding: "30px"
+  }}
+>
+  <div className="container">
 
-      {/* HEADER (same style as login/home) */}
-      <div className="row mb-4">
-        <div className="col-lg-6 mx-auto text-center">
-          <div className="bg-white shadow-sm rounded-4 p-4">
-            <h4 className="fw-bold mb-2 text-dark">
-              <i className="fa-solid fa-user-plus me-2 text-primary"></i>
-              Student Registration
-            </h4>
-            <p className="text-muted small mb-0">
-              Create your account to access library services
-            </p>
-          </div>
-        </div>
+    {/* HEADER */}
+    <div className="text-center mb-5">
+      <div
+        className="mx-auto mb-3 d-flex align-items-center justify-content-center"
+        style={{
+          width: "70px",
+          height: "70px",
+          borderRadius: "20px",
+          background: "rgba(255,255,255,0.15)",
+          backdropFilter: "blur(10px)",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.2)"
+        }}
+      >
+        <i className="fas fa-user-plus text-white fs-3"></i>
       </div>
 
-      {/* FORM CARD */}
-      <div className="row justify-content-center">
-        <div className="col-lg-6 col-md-8">
-          <div className="card border-0 shadow-sm rounded-4">
-            <div className="card-body p-4">
-
-              <form onSubmit={handleSubmit}>
-
-                {/* FULL NAME */}
-                <div className="mb-3">
-                  <label className="form-label fw-semibold text-secondary">
-                    <i className="fa-solid fa-user me-2 text-primary"></i>
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    name="full_name"
-                    className="form-control"
-                    placeholder="Enter full name"
-                    value={formData.full_name}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                {/* MOBILE */}
-                <div className="mb-3">
-                  <label className="form-label fw-semibold text-secondary">
-                    <i className="fa-solid fa-mobile me-2 text-primary"></i>
-                    Mobile Number
-                  </label>
-                  <input
-                    type="text"
-                    name="mobile"
-                    className="form-control"
-                    placeholder="Enter mobile number"
-                    value={formData.mobile}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                {/* EMAIL */}
-                <div className="mb-3">
-                  <label className="form-label fw-semibold text-secondary">
-                    <i className="fa-solid fa-envelope me-2 text-primary"></i>
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    className="form-control"
-                    placeholder="Enter valid email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                {/* PASSWORD */}
-                <div className="mb-3">
-                  <label className="form-label fw-semibold text-secondary">
-                    <i className="fa-solid fa-key me-2 text-primary"></i>
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    name="password"
-                    className="form-control"
-                    placeholder="Enter password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                {/* CONFIRM PASSWORD */}
-                <div className="mb-4">
-                  <label className="form-label fw-semibold text-secondary">
-                    <i className="fa-solid fa-check-circle me-2 text-primary"></i>
-                    Confirm Password
-                  </label>
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    className="form-control"
-                    placeholder="Confirm password"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                {/* BUTTON */}
-                <button
-                  type="submit"
-                  className="btn btn-primary w-100 fw-semibold rounded-3 shadow-sm"
-                  disabled={loading}
-                >
-                  {loading ? (
-                    <>
-                      <span className="spinner-border spinner-border-sm me-2"></span>
-                      Signing Up...
-                    </>
-                  ) : (
-                    <>
-                      <i className="fa-solid fa-user-plus me-2"></i>
-                      Sign Up
-                    </>
-                  )}
-                </button>
-
-                {/* LOGIN LINK */}
-                <p className="text-center mt-3 text-muted">
-                  Already have an account?{" "}
-                  <a
-                    href="/user/login"
-                    className="text-decoration-none text-primary fw-semibold"
-                  >
-                    Login here
-                  </a>
-                </p>
-
-              </form>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <h2 className="fw-bold text-white">Student Signup</h2>
+      <p className="text-light">Create your library account</p>
     </div>
+
+    {/* CARD */}
+    <div className="row justify-content-center">
+      <div className="col-md-6 col-lg-5">
+
+        <div
+          className="card border-0"
+          style={{
+            borderRadius: "20px",
+            background: "rgba(255,255,255,0.15)",
+            backdropFilter: "blur(20px)",
+            boxShadow: "0 20px 60px rgba(0,0,0,0.3)"
+          }}
+        >
+          <div className="card-body p-5">
+
+            <form onSubmit={handleSubmit}>
+
+              {/* FULL NAME */}
+              <div className="mb-3 position-relative">
+                <i className="fas fa-user position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                <input
+                  type="text"
+                  name="full_name"
+                  placeholder="Full Name"
+                  required
+                  value={formData.full_name}
+                  onChange={handleChange}
+                  className="form-control ps-5"
+                  style={inputStyle}
+                />
+              </div>
+
+              {/* MOBILE */}
+              <div className="mb-3 position-relative">
+                <i className="fas fa-phone position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                <input
+                  type="text"
+                  name="mobile"
+                  placeholder="Mobile Number"
+                  required
+                  value={formData.mobile}
+                  onChange={handleChange}
+                  className="form-control ps-5"
+                  style={inputStyle}
+                />
+              </div>
+
+              {/* EMAIL */}
+              <div className="mb-3 position-relative">
+                <i className="fas fa-envelope position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="form-control ps-5"
+                  style={inputStyle}
+                />
+              </div>
+
+              {/* PASSWORD */}
+              <div className="mb-3 position-relative">
+                <i className="fas fa-lock position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  required
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="form-control ps-5"
+                  style={inputStyle}
+                />
+              </div>
+
+              {/* CONFIRM PASSWORD */}
+              <div className="mb-4 position-relative">
+                <i className="fas fa-check-circle position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  required
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  className="form-control ps-5"
+                  style={inputStyle}
+                />
+              </div>
+
+              {/* BUTTON */}
+              <button
+                type="submit"
+                disabled={loading}
+                className="btn w-100 text-white fw-bold"
+                style={{
+                  height: "55px",
+                  borderRadius: "14px",
+                  background: "linear-gradient(135deg, #2563eb, #1d4ed8)",
+                  boxShadow: "0 10px 25px rgba(37,99,235,0.5)"
+                }}
+              >
+                {loading ? (
+                  <>
+                    <span className="spinner-border spinner-border-sm me-2"></span>
+                    Signing Up...
+                  </>
+                ) : (
+                  <>
+                    <i className="fas fa-user-plus me-2"></i>
+                    Create Account
+                  </>
+                )}
+              </button>
+
+              {/* FOOTER */}
+              <p className="text-center mt-4 text-light" style={{ fontSize: "14px" }}>
+                Already have an account?{" "}
+                <a
+                  href="/user/login"
+                  style={{
+                    color: "#fff",
+                    fontWeight: "600",
+                    textDecoration: "underline"
+                  }}
+                >
+                  Login here
+                </a>
+              </p>
+
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
+</div>
 );
 }
 
-export default UserSignup
+// 🔥 Reusable input style (same as login)
+const inputStyle = {
+  height: "52px",
+  borderRadius: "12px",
+  border: "none",
+  background: "rgba(255,255,255,0.85)"
+};
+
+export default UserSignup;
