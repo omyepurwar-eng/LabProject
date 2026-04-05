@@ -346,8 +346,8 @@ def user_login(request):
     try:
         
             # 🔥 CLEAN VERSION
-            student = Student.objects.get(
-            Q(email=login_id) | Q(student_id=login_id),
+        student = Student.objects.get(
+    Q(email=login_id) | Q(student_id=login_id),
             is_active=True
         )
 
