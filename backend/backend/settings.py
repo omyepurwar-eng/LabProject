@@ -27,12 +27,14 @@ INSTALLED_APPS = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://lab-project-wbuv.vercel.app",  # ← your Vercel URL
+    "https://lab-project-wbuv.vercel.app",
+    "https://lab-project-tawny.vercel.app", # ← your Vercel URL
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
-    "https://lab-project-wbuv.vercel.app",  # ← your Vercel URL
+    "https://lab-project-wbuv.vercel.app",
+    "https://lab-project-tawny.vercel.app", # ← your Vercel URL
 ]
 
 MIDDLEWARE = [
