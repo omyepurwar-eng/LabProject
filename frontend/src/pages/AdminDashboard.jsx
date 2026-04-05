@@ -22,7 +22,7 @@ const AdminDashboard = () => {
     const fetchStats = async () => {
         setLoading(true);
         try{
-            const response = await axios.get('http://localhost:8000/api/admin/dashboard-stats/');
+            const response = await axios.get(`${import.meta.env.VITE_API}/admin/dashboard-stats/`);
             setStats(response.data);
         }
         catch(err){

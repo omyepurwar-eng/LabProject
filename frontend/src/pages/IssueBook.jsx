@@ -30,7 +30,7 @@ const IssueBook = () => {
         setStudent(null);
         setStudentLoading(true);
         try{
-            const response = await axios.get(`http://localhost:8000/api/students/by_id/?student_id=${studentId}`);
+            const response = await axios.get(`${import.meta.env.VITE_API}/students/by_id/?student_id=${studentId}`);
             setStudent(response.data.student);
         } catch (error) {
             toast.error("Student not found.");
@@ -47,7 +47,7 @@ const IssueBook = () => {
         setBook(null);
         setBookLoading(true);
         try{
-            const response = await axios.get(`http://localhost:8000/api/books/lookup/?query=${bookQuery}`);
+            const response = await axios.get(`${import.meta.env.VITE_API}/books/lookup/?query=${bookQuery}`);
             setBook(response.data.book);
         } catch (error) {
             toast.error("Error fetching book.");
@@ -67,7 +67,7 @@ const IssueBook = () => {
         }   
         setIssueing(true);
         try {
-            const response = await axios.post('http://localhost:8000/api/issue_book/', {
+            const response = await axios.post(`${import.meta.env.VITE_API}/issue_book/`, {
                 student_id: student.student_id,
                 book_id: book.id,
                 remarks: remark

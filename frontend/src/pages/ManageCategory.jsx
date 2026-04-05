@@ -27,7 +27,7 @@ const ManageCategory = () => {
     const fetchCategories = async () => {
         setLoadingList(true);
         try{
-            const response = await axios.get('http://127.0.0.1:8000/api/categories/');
+            const response = await axios.get(`${import.meta.env.VITE_API}/categories/`);
             setCategories(response.data);  
         }
         catch(err){
@@ -56,7 +56,7 @@ const ManageCategory = () => {
         setSaving(true);
         
         try {
-            const response = await axios.put(`http://127.0.0.1:8000/api/update_category/${editId}/`, { name: editName, status: editStatus });
+            const response = await axios.put(`${import.meta.env.VITE_API}/update_category/${editId}/`, { name: editName, status: editStatus });
             if(response.data.success){
                 toast.success(response.data.message || 'Category Updated.');
                 cancelEdit();

@@ -25,7 +25,7 @@ useEffect(() => {
     const fetchStats = async () => {
         try {
             setLoading(true);
-            const response = await axios.get("/api/user_stats/", {
+            const response = await axios.get(`${import.meta.env.VITE_API}/user_stats/`, {
                 params: { student_id: studentUser.student_id }
             });
             if (response.data.success) {
