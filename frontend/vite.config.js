@@ -5,14 +5,12 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(),tailwindcss()],
-   server: {
+    server: {
     proxy: {
-      // proxy all requests starting with /api to your backend
       '/api': {
-        target: 'https://labproject-niut.onrender.com/', // backend URL
+        target: 'https://interseaboard-tabatha-insociable.ngrok-free.dev',
         changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/api/, ''), // optional
+        secure: false, // ngrok HTTPS may have self-signed cert
       },
     },
   },

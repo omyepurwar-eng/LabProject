@@ -341,6 +341,8 @@ def user_login(request):
     login_id = request.data.get('login_id')
     password = request.data.get('password')
 
+    print("Login ID:", login_id, password)
+
     try:
         
             # 🔥 CLEAN VERSION
