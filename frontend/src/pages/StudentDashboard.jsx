@@ -29,7 +29,7 @@ useEffect(() => {
                 params: { student_id: studentUser.student_id }
             });
             if (response.data.success) {
-                setStats(response.data.stats);
+                setStats(response.data);
             } else {
                 toast.error(response.data.message);
             }
