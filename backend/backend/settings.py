@@ -1,5 +1,5 @@
 from pathlib import Path
-import environ
+import environ # type: ignore
 import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
